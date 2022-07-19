@@ -12,7 +12,7 @@
 
 ### Mikä jäi epäselväksi tai on tuottanut vaikeuksia?
 
-- 19.7. En ole Javan kanssa käyttänyt aiemmin VS Codea ja projektin luonti oli vähän epäselvää. Loin Kotlin projektin, mutten oikeastaan tiedä mitä olisi pitänyt luoda, kun VS Code antoi vaihtoehtoina vain Goovy ja Kotlin projektit. 
+- 19.7. En ole Javan kanssa käyttänyt aiemmin VS Codea ja projektin luonti oli vähän epäselvää. Loin Kotlin projektin, mutten oikeastaan tiedä mitä olisi pitänyt luoda, kun VS Code antoi vaihtoehtoina vain Groovy ja Kotlin projektit. 
 
 ### Mitä teen seuraavaksi?
 
