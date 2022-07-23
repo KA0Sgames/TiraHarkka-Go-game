@@ -4,8 +4,11 @@
 
 - 19.7. Repositorion luominen GitHubiin, Gitin perusteiden kertausta, Gradlen asentaminen VS Codeen, sekä Java Gradle projektin luominen, aika-arviota vaikea sanoa, ehkä yhteensä n. 2 tuntia
 - 20.7. .gitignore tiedoston, sekä Gradlen plugineiden ihmettelyä noin tunti. Gimp:in käytön opettelua ja käyttöliittymän kuvien piirto n. 3 tuntia.
-- 23.7. Gitin ja Javan asennus läppärille, noin 2h huonolla yhteydellä.
-- 23.7. Määrittelydokumentin kirjoitus, n.1,5h 
+- 23.7. Gitin ja Javan asennus läppärille, noin 2 tuntia huonolla yhteydellä.
+- 23.7. Luin Monte Carlo puuhausta noin tunnin verran
+- 23.7. Määrittelydokumentin kirjoitus, n.1,5 tuntia
+
+###### Käytetty aika tällä viikolla yhteensä n. 9,5 tuntia
 
 ### Miten ohjelma on edistynyt?
 
