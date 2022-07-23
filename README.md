@@ -3,8 +3,8 @@
 
 ### Dokumentaatio:
 
-- [Määrittelydokumentti](dokumentit/Määrittelydokumentti.md)
+- [Määrittelydokumentti](dokumentaatio/Maarittelydokumentti.md)
 
 Viikkoraportit:
 
-- [Viikko 1](dokumentit/Viikkoraportti1.md)
+- [Viikko 1](dokumentaatio/Viikkoraportti1.md)
