@@ -28,3 +28,7 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+javadoc {
+    source = sourceSets.main.allJava
+}
