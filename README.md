@@ -12,5 +12,5 @@ Viikkoraportit:
 
 JavaDoc:
 
-- Javadoc voidaan generoida komennolla 'gradle javadoc'
+- Javadoc voidaan generoida komennolla ´gradle javadoc´
 - Javadoc:ia voidaan tarkastella tiedostosta /GoPeli/build/docs/javadoc/index.html
