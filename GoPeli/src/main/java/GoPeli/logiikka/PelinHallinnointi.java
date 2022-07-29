@@ -4,6 +4,8 @@ public class PelinHallinnointi {
     
     private byte[][] peli;
     private boolean mustanVuoro;
+    private int mustanVangit;
+    private int valkoisenVangit;
     
     
     public PelinHallinnointi() {
@@ -15,6 +17,9 @@ public class PelinHallinnointi {
                 peli[i][j] = 0;
             }
         }
+        
+        this.mustanVangit = 0;
+        this.valkoisenVangit = 0;
     }
     
     public byte getKoordinaatinTila(Koordinaatti koordinaatti) {
@@ -23,6 +28,14 @@ public class PelinHallinnointi {
     
     public boolean getMustanVuoro() {
         return this.mustanVuoro;
+    }
+    
+    public int getMustanVangit() {
+        return this.mustanVangit;
+    }
+    
+    public int getValkoisenVangit() {
+        return this.valkoisenVangit;
     }
     
     public String lisaaSiirto(Koordinaatti koordinaatti) {
