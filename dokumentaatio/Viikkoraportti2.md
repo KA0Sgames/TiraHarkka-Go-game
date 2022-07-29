@@ -5,14 +5,16 @@
 - 25.7. Projektin muutos VS Codesta NetBeansin puolelle ja Gradlen muutos pois Kotlinista. JavaFx säätäminen toimimaan. Yhteensä noin 6 tuntia.
 - 27.7. Katsonut Java tutoriaaleja YouTubesta ja koittanut saada pelilaudan piirrettyä käyttöliittymällä. Noin 3 tuntia käytetty.
 - 28.7. Tapellut suhteellisen polun kanssa, onnistumatta saamaan sitä toimimaan. Kirjoitin hieman lisää käyttöliittymää ja aloitin ohjelmalogiikan tekemisen luomalla ja kirjoittamalla hieman toiminnallisuutta pelin hallinnointiin tarkoitetulla luokalla, sekä koordinaatti luokan lisäys. Yhteensä reilu 4 tuntia, mutta vaikea arvioida kun pätkittäistä työtä.
+- 29.7. Javadoc säädetty toimimaan. Noin 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä noin 13 tuntia.
+###### Käytetty aika tällä viikolla yhteensä noin 15 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
 - 25.7. Graafinen käyttöliittymä saatu näyttämään jotain JavaFx avulla.
 - 27.7. Saan pelilaudan piirrettyä ruudulle käyttäen absoluuttista polkua kuvaan, mutta en suhteellisella polulla.
 - 28.7. Hieman lisää käyttöliittymää. Ohjelmalogiikkaa aloitettu, PelinHallinnointi-luokka + Koordinaatti-luokka luotu.
+- 29.7. Javadoc säädetty toimimaan
 
 ### Mitä opin tällä viikolla?
 
