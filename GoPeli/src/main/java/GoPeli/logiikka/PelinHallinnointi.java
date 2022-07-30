@@ -63,9 +63,4 @@ public class PelinHallinnointi {
         
         return "On";
     }
-    
-    
-    
-    
-    
 }

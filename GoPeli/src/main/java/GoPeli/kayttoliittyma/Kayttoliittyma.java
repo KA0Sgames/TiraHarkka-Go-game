@@ -68,19 +68,24 @@ public class Kayttoliittyma extends Application {
         
         pelialusta.getChildren().add(lauta);
         
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 3));
+        //pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
+        //pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 3));
         // pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 4, (byte) 4));
         
         
         while (true) {
+            if (pelinHallinnointi.getMustanVuoro()) {
+                
+            } else {
+                
+            }
             break;
         }
         
         ikkuna.setScene(scene);
         ikkuna.show();
         
-        while (true) {
+        /* while (true) {
             for (byte i = 0; i < 9; i++) {
                 for (byte j = 0; j < 9; j++) {
                        System.out.print("[" + pelinHallinnointi.getKoordinaatinTila(new Koordinaatti(j, i)) + "]");
@@ -88,7 +93,7 @@ public class Kayttoliittyma extends Application {
                 System.out.println("");
             }
             break;
-        }
+        } */
     }
     
     public static void main(String[] args) {

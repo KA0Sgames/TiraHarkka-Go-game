@@ -6,8 +6,9 @@
 - 27.7. Katsonut Java tutoriaaleja YouTubesta ja koittanut saada pelilaudan piirrettyä käyttöliittymällä. Noin 3 tuntia käytetty.
 - 28.7. Tapellut suhteellisen polun kanssa, onnistumatta saamaan sitä toimimaan. Kirjoitin hieman lisää käyttöliittymää ja aloitin ohjelmalogiikan tekemisen luomalla ja kirjoittamalla hieman toiminnallisuutta pelin hallinnointiin tarkoitetulla luokalla, sekä koordinaatti luokan lisäys. Yhteensä reilu 4 tuntia, mutta vaikea arvioida kun pätkittäistä työtä.
 - 29.7. Javadoc säädetty toimimaan. Noin 2 tuntia. Käyttöliittymään lisätty sivupaneeli. Luokat tehty tekoälylle ja siirron laillisuuden tarkastukselle. Yhteensä noin 2 tuntia.
+- 30.7. JUnit testit, sekä Jacoco säädetty toimimaan ja configuroitu testikattavuutta varten, itse testejä ei vielä kirjoitettu kuin muutama, jotta JUnit ja Jacoco asetukset sai tarkastettua. Configuroinnissa Jacocon testikattavuusraportista jätin käyttöliittymän pois, kuten muistaakseni tehtiin Ohjelmistotekniikka kurssilla. Noin 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä noin 17 tuntia.
+###### Käytetty aika tällä viikolla yhteensä noin 19 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -15,10 +16,12 @@
 - 27.7. Saan pelilaudan piirrettyä ruudulle käyttäen absoluuttista polkua kuvaan, mutta en suhteellisella polulla.
 - 28.7. Hieman lisää käyttöliittymää. Ohjelmalogiikkaa aloitettu, PelinHallinnointi-luokka + Koordinaatti-luokka luotu.
 - 29.7. Javadoc säädetty toimimaan. Käyttöliittymään lisätty sivupaneeli jossa näkyy pelin aikana syötyjen kivien määrä.
+- 30.7. JUnit testit otettu käyttöön (ei vielä kirjoitettu itse testejä) ja Jacoco configuroitu.
 
 ### Mitä opin tällä viikolla?
 
 - 27.7. Valmiin kuvan piirtämistä JavaFx:llä.
+- 30.7. Gradle projektin konfigurointia, sillä Ohjelmistotekniikka kurssilla käytin Mavenia.
 
 ### Mikä jäi epäselväksi tai on tuottanut vaikeuksia?
 

@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GoPeli.tekoaly;
 
-/**
- *
- * @author KA0S
- */
+import GoPeli.logiikka.Koordinaatti;
+
 public class Tekoaly {
     
+    public Tekoaly() {
+        
+    }
+    
+    public Koordinaatti pyydaSiirto(){
+        return null;
+    }
 }

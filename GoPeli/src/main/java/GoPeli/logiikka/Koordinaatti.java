@@ -7,7 +7,7 @@ public class Koordinaatti {
     private final byte x;
     private final byte y;
     
-    public Koordinaatti(byte x, byte y) {
+    public Koordinaatti(byte y, byte x) {
         this.x = x;
         this.y = y;
     }
