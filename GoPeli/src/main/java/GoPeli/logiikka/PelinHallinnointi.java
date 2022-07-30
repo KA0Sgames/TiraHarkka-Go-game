@@ -11,15 +11,12 @@ public class PelinHallinnointi {
     public PelinHallinnointi() {
         this.peli = new byte[9][9];
         this.mustanVuoro = true;
-        
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                peli[i][j] = 0;
-            }
-        }
-        
         this.mustanVangit = 0;
         this.valkoisenVangit = 0;
+    }
+    
+    public byte[][] getPeli() {
+        return this.peli;
     }
     
     public byte getKoordinaatinTila(Koordinaatti koordinaatti) {

@@ -85,15 +85,15 @@ public class Kayttoliittyma extends Application {
         ikkuna.setScene(scene);
         ikkuna.show();
         
-        /* while (true) {
-            for (byte i = 0; i < 9; i++) {
-                for (byte j = 0; j < 9; j++) {
-                       System.out.print("[" + pelinHallinnointi.getKoordinaatinTila(new Koordinaatti(j, i)) + "]");
-                }
-                System.out.println("");
-            }
-            break;
-        } */
+//        while (true) {
+//            for (byte i = 0; i < 9; i++) {
+//                for (byte j = 0; j < 9; j++) {
+//                       System.out.print("[" + pelinHallinnointi.getKoordinaatinTila(new Koordinaatti(j, i)) + "]");
+//                }
+//                System.out.println("");
+//            }
+//            break;
+//        }
     }
     
     public static void main(String[] args) {
