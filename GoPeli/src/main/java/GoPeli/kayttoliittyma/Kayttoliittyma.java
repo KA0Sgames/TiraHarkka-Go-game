@@ -54,13 +54,13 @@ public class Kayttoliittyma extends Application {
         
         Scene scene = new Scene(asettelu);
         
-        Image pelilauta = new Image("C:\\KA0S\\Programming\\Koulu\\TiraHarkka\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\Board.png");
+        Image pelilauta = new Image("D:\\KA0S\\Koulu\\TiraHarkkatyo\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\Board.png");
         ImageView lauta = new ImageView(pelilauta);
         
-        Image mustakivi = new Image("C:\\KA0S\\Programming\\Koulu\\TiraHarkka\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\Black_stone.png");
+        Image mustakivi = new Image("D:\\KA0S\\Koulu\\TiraHarkkatyo\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\Black_stone.png");
         ImageView musta = new ImageView(mustakivi);
         
-        Image valkoinenkivi = new Image("C:\\KA0S\\Programming\\Koulu\\TiraHarkka\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\White_stone.png");
+        Image valkoinenkivi = new Image("D:\\KA0S\\Koulu\\TiraHarkkatyo\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\White_stone.png");
         ImageView valkoinen = new ImageView(valkoinenkivi);
         
         lauta.setX(0.0);
