@@ -20,6 +20,7 @@
 Lähteet:
 - https://www.cs.helsinki.fi/u/ahslaaks/kkkk.pdf
 - https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.699.1458&rep=rep1&type=pdf
+- Pumperla, M., Ferguson, K., 2019, Deep Learning and the Game of Go, Manning Publications
 
 - Kuulun tietojenkäsittelytieteen kandiohjelmaan
 - Dokumentaation ja koodiprojektin kieli: Suomi
