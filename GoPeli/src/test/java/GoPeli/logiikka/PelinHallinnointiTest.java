@@ -95,6 +95,13 @@ public class PelinHallinnointiTest {
     }
     
     @Test
+    public void KonstruktoriLuoSiirronLaillisuudenTarkastajan() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        
+        assertNotNull(pelinHallinnointi.getSiirronLaillisuudenTarkastaja());
+    }
+    
+    @Test
     public void GetPeliPalauttaaPelin() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
         
@@ -167,5 +174,32 @@ public class PelinHallinnointiTest {
         assertEquals(1, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
     }
     
+    @Test
+    public void lisaaSiirtoOnnistuuLisaamaanMustanSiirron() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        assertEquals("Onnistui", pelinHallinnointi.lisaaSiirto(koordinaatti));
+    }
     
+    @Test
+    public void lisaaSiirtoOnnistuuLisaamaanValkoisenSiirron() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1));
+        
+        
+        assertEquals("Onnistui", pelinHallinnointi.lisaaSiirto(koordinaatti));
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOnJoKiviKunKoitetaanLisataSiirtoKohtaanJossaJoKivi() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelinHallinnointi.lisaaSiirto(koordinaatti);
+        
+        assertEquals("On jo kivi", pelinHallinnointi.lisaaSiirto(koordinaatti));
+    }
 }

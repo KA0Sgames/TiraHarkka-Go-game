@@ -37,6 +37,10 @@ public class PelinHallinnointi {
         return this.valkoisenVangit;
     }
     
+    public SiirronLaillisuudenTarkastaja getSiirronLaillisuudenTarkastaja() {
+        return this.tarkastaja;
+    }
+    
     public String lisaaSiirto(Koordinaatti koordinaatti) {
         String onkoLaillinen = tarkastaja.onkoLaillinen(this.peli, mustanVuoro, koordinaatti);
         
