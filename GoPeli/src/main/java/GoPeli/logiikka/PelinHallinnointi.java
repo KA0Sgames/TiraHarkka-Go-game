@@ -6,6 +6,7 @@ public class PelinHallinnointi {
     private boolean mustanVuoro;
     private int mustanVangit;
     private int valkoisenVangit;
+    private SiirronLaillisuudenTarkastaja tarkastaja;
     
     
     public PelinHallinnointi() {
@@ -13,6 +14,7 @@ public class PelinHallinnointi {
         this.mustanVuoro = true;
         this.mustanVangit = 0;
         this.valkoisenVangit = 0;
+        this.tarkastaja = new SiirronLaillisuudenTarkastaja();
     }
     
     public byte[][] getPeli() {
@@ -20,7 +22,7 @@ public class PelinHallinnointi {
     }
     
     public byte getKoordinaatinTila(Koordinaatti koordinaatti) {
-        return this.peli[koordinaatti.getXKoordinaatti()][koordinaatti.getYKoordinaatti()];
+        return this.peli[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()];
     }
     
     public boolean getMustanVuoro() {
@@ -36,9 +38,9 @@ public class PelinHallinnointi {
     }
     
     public String lisaaSiirto(Koordinaatti koordinaatti) {
-        String onkoLaillinen = tarkistaSiirronLaillisuus(koordinaatti);
+        String onkoLaillinen = tarkastaja.onkoLaillinen(this.peli, mustanVuoro, koordinaatti);
         
-        if (onkoLaillinen == "On") {
+        if (onkoLaillinen.equals("On")) {
             if (this.mustanVuoro) {
                 this.peli[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()] = 1;
                 this.mustanVuoro = !this.mustanVuoro;
@@ -51,13 +53,5 @@ public class PelinHallinnointi {
         } else {
             return onkoLaillinen;
         }
-    }
-    
-    private String tarkistaSiirronLaillisuus(Koordinaatti koordinaatti) {
-        if (this.peli[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()] != 0) {
-            return "On jo kivi";
-        }
-        
-        return "On";
     }
 }

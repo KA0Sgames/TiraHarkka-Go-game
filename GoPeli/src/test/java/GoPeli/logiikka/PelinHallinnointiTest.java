@@ -126,4 +126,46 @@ public class PelinHallinnointiTest {
         byte[][] peli = pelinHallinnointi.getPeli();
         assertEquals(2, peli[3][5]);
     }
+    
+    @Test
+    public void getKoordinaatinTilaPalauttaaOikeanArvon1() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        assertEquals(0, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
+    }
+    
+    @Test
+    public void getKoordinaatinTilaPalauttaaOikeanArvon2() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        pelinHallinnointi.lisaaSiirto(koordinaatti);
+        
+        assertEquals(1, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
+    }
+    
+    @Test
+    public void getKoordinaatinTilaPalauttaaOikeanArvon3() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2);
+        
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
+        pelinHallinnointi.lisaaSiirto(koordinaatti);        
+        
+        assertEquals(2, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
+    }
+    
+    @Test
+    public void getKoordinaatinTilaPalauttaaOikeanArvon4() {
+        PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2);
+        
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1));
+        pelinHallinnointi.lisaaSiirto(koordinaatti);        
+        
+        assertEquals(1, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
+    }
+    
+    
 }
