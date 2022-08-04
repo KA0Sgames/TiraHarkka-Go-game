@@ -7,8 +7,9 @@
 - 3.8. Luin Max Pumperlan ja Kevin Fergusonin kirjaa "Deep Learning and the Game of Go". Noin 1 tunti.
 - 3.8. Siirron laillisuuden tarkastamiseen tehty luokka, johon alku kirjoitettu ja testit sen tänhetkiselle toiminnalle. Noin 1 tunti.
 - 3.8. Javadoc dokumentaation lisääminen kaikille logiikka-paketin luokille. Aikaa meni 1 tunti.
+- 4.8. Yritin saada Checkstyleä toimimaan, onnistumatta siinä. 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 4 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 6 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -21,7 +22,7 @@
 
 ### Mikä jäi epäselväksi tai on tuottanut vaikeuksia?
 
-
+- 4.8. Checkstylen käyttöönotto ei ole toiminut.
 
 ### Mitä teen seuraavaksi?
 
