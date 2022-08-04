@@ -3,6 +3,7 @@ plugins {
   id "org.openjfx.javafxplugin" version "0.0.13"
   
   id 'jacoco'
+  id 'checkstyle'
   //id 'java'
 }
 
@@ -39,16 +40,27 @@ def jacocoExclude = ['**/kayttoliittyma/**']
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     afterEvaluate {
-            getClassDirectories().setFrom(classDirectories.files.collect {
-                fileTree(dir: it, exclude: jacocoExclude)
-            })
-        }
+        getClassDirectories().setFrom(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExclude)
+        })
+    }
 }
 
 jacocoTestCoverageVerification {
-        afterEvaluate {
-            getClassDirectories().setFrom(classDirectories.files.collect {
-                fileTree(dir: it, exclude: jacocoExclude)
-            })
-        }
+    afterEvaluate {
+        getClassDirectories().setFrom(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExclude)
+        })
     }
+}
+
+checkstyle {
+    toolVersion = '8.29'
+    
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
