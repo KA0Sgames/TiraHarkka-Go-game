@@ -45,15 +45,22 @@ public class KoordinaattiTest {
      
     @Test
     public void konstruktoriAsettaaYkoordinaatinOikein() {
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 2, (byte) 1);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 2, (byte) 1, Vari.MUSTA);
         
         assertEquals(2, koordinaatti.getYKoordinaatti());
     }
     
     @Test
     public void konstruktoriAsettaaXkoordinaatinOikein() {
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 2, (byte) 1);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 2, (byte) 1, Vari.MUSTA);
         
         assertEquals(1, koordinaatti.getXKoordinaatti());
+    }
+    
+    @Test
+    public void konstruktoriAsettaaVarinOikein() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 2, (byte) 1, Vari.MUSTA);
+        
+        assertEquals(Vari.MUSTA, koordinaatti.getVari());
     }
 }

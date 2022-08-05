@@ -104,7 +104,7 @@ public class PelinHallinnointiTest {
     @Test
     public void getPeliPalauttaaOikeanPelin1() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
         
         pelinHallinnointi.lisaaSiirto(koordinaatti);
         
@@ -115,8 +115,8 @@ public class PelinHallinnointiTest {
     @Test
     public void getPeliPalauttaaOikeanPelin2() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
-        Koordinaatti toinenKoordinaatti = new Koordinaatti((byte) 3, (byte) 5);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
+        Koordinaatti toinenKoordinaatti = new Koordinaatti((byte) 3, (byte) 5, Vari.VALKOINEN);
         
         pelinHallinnointi.lisaaSiirto(koordinaatti);
         pelinHallinnointi.lisaaSiirto(toinenKoordinaatti);
@@ -128,7 +128,7 @@ public class PelinHallinnointiTest {
     @Test
     public void getKoordinaatinTilaPalauttaaOikeanArvon1() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
         
         assertEquals(0, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
     }
@@ -136,7 +136,7 @@ public class PelinHallinnointiTest {
     @Test
     public void getKoordinaatinTilaPalauttaaOikeanArvon2() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
         pelinHallinnointi.lisaaSiirto(koordinaatti);
         
         assertEquals(1, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
@@ -145,9 +145,9 @@ public class PelinHallinnointiTest {
     @Test
     public void getKoordinaatinTilaPalauttaaOikeanArvon3() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2, Vari.VALKOINEN);
         
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA));
         pelinHallinnointi.lisaaSiirto(koordinaatti);        
         
         assertEquals(2, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
@@ -156,10 +156,10 @@ public class PelinHallinnointiTest {
     @Test
     public void getKoordinaatinTilaPalauttaaOikeanArvon4() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 3, (byte) 2, Vari.MUSTA);
         
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2));
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1));
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA));
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1, Vari.VALKOINEN));
         pelinHallinnointi.lisaaSiirto(koordinaatti);        
         
         assertEquals(1, pelinHallinnointi.getKoordinaatinTila(koordinaatti));
@@ -168,7 +168,7 @@ public class PelinHallinnointiTest {
     @Test
     public void lisaaSiirtoOnnistuuLisaamaanMustanSiirron() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
         
         assertEquals("Onnistui", pelinHallinnointi.lisaaSiirto(koordinaatti));
     }
@@ -176,9 +176,9 @@ public class PelinHallinnointiTest {
     @Test
     public void lisaaSiirtoOnnistuuLisaamaanValkoisenSiirron() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.VALKOINEN);
         
-        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1));
+        pelinHallinnointi.lisaaSiirto(new Koordinaatti((byte) 2, (byte) 1, Vari.MUSTA));
         
         
         assertEquals("Onnistui", pelinHallinnointi.lisaaSiirto(koordinaatti));
@@ -187,7 +187,7 @@ public class PelinHallinnointiTest {
     @Test
     public void lisaaSiirtoPalauttaaOnJoKiviKunKoitetaanLisataSiirtoKohtaanJossaJoKivi() {
         PelinHallinnointi pelinHallinnointi = new PelinHallinnointi();
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
         
         pelinHallinnointi.lisaaSiirto(koordinaatti);
         

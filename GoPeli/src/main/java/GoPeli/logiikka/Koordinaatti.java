@@ -6,15 +6,18 @@ package GoPeli.logiikka;
 public class Koordinaatti {
     private final byte x;
     private final byte y;
+    private Vari vari;
     
     /**
-     * Konstruktori jolla luodaan koordinaatti-olio kahdella parametrilla
+     * Konstruktori jolla luodaan koordinaatti-olio kolmella parametrilla
      * @param y koordinaatin korkeussuuntainen arvo ylh‰‰lt‰ l‰htien
      * @param x koordinaatin leveyssuuntainen arvo vasemmalta l‰htien
+     * @param vari koordinaatin v‰ri, eli onko piste tyhj‰, vai onko siin‰ musta tai valkea kivi
      */
-    public Koordinaatti(byte y, byte x) {
+    public Koordinaatti(byte y, byte x, Vari vari) {
         this.x = x;
         this.y = y;
+        this.vari = vari;
     }
     
     /**
@@ -33,5 +36,9 @@ public class Koordinaatti {
      */
     public byte getYKoordinaatti() {
         return this.y;
+    }
+    
+    public Vari getVari() {
+        return this.vari;
     }
 }

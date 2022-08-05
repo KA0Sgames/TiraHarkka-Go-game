@@ -1,5 +1,6 @@
 package GoPeli.logiikka;
 
+import java.util.HashSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,9 +8,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SiirronLaillisuudenTarkastajaTest {
+public class RyhmaTest {
     
-    public SiirronLaillisuudenTarkastajaTest() {
+    public RyhmaTest() {
     }
     
     @BeforeAll
@@ -29,14 +30,18 @@ public class SiirronLaillisuudenTarkastajaTest {
     }
 
     @Test
-    public void onkoLaillinenVastaaOikeinKivenPaallePelattaessa() {
-        byte[][] peli = new byte[9][9];
-        SiirronLaillisuudenTarkastaja tarkastaja = new SiirronLaillisuudenTarkastaja();
+    public void KonstruktoriLuoRyhman() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
         
-        peli[1][2] = 1;
-        
-        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2, Vari.MUSTA);
-        
-        assertEquals("On jo kivi", tarkastaja.onkoLaillinen(peli, true, koordinaatti));
+        assertNotNull(ryhma);
     }
+    
+    @Test
+    public void KonstruktoriVarmistaaArvonVarille() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        
+        assertNotNull(ryhma.getVari());
+    }
+    
+    
 }
