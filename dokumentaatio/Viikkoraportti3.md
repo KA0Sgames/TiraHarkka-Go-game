@@ -8,13 +8,15 @@
 - 3.8. Siirron laillisuuden tarkastamiseen tehty luokka, johon alku kirjoitettu ja testit sen tänhetkiselle toiminnalle. Noin 1 tunti.
 - 3.8. Javadoc dokumentaation lisääminen kaikille logiikka-paketin luokille. Aikaa meni 1 tunti.
 - 4.8. Yritin saada Checkstyleä toimimaan, onnistumatta siinä. 2 tuntia.
+- 5.8. Tein väri-enumin, muokkasin Koordinaatti-luokkaa lisäämällä tiedon koordinaatin väristä. Tein Ryhmä-luokan kuvaamaan kiviryhmiä. Yhteensä 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 6 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 8 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
 - 3.8. Siirron laillisuuden tarkastamiseen tarkoitettu luokka aloitettu ja sen tämänhetkiselle toiminnalle testit kirjoitettu. Lisäksi pelin hallinnoinnille muutama testi lisää.
 - 3.8. Javadoc dokumentaatio kirjoitettu kaikille logiikka-paketin luokille.
+- 5.8. Aloitin ohjelman aika kokonaisvaltaisen muutoksen, tein ryhmä-luokan, väri-enumin ja muokkasin hieman Koordinaatti-luokkaa.
 
 ### Mitä opin tällä viikolla?
 
@@ -27,3 +29,4 @@
 ### Mitä teen seuraavaksi?
 
 - 3.8. Checkstylen käyttöönotto ja konfigurointi.
+- 5.8. Jatkan muutoksen tekemistä, muutan peliä kuvaavan taulukon sisältämään Koordinaatti-olioita, joilla on väri ja jotka tuntevat naapurinsa.
