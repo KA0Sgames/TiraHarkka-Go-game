@@ -22,3 +22,7 @@ Testit:
 - Testien tuloksia voi tarkastella tiedostosta /GoPeli/build/reports/tests/test/index.html
 
 - Testit ajamalla generoituu testikattavuusraportti, jota voi tutkia tiedostosta /GoPeli/build/reports/jacoco/test/html/index.html
+
+Huom. vertais-arvioijalle ja viikkopalautuksen tarkastajalle, tämänhetkinen versio on pahasti kesken. Lähdin tekemään niin isoa muutosta
+etten saanut samalla kerralla päivitettyä testejä ja dokumentaatiota vastaamaan tämänhetkistä projektia. Myöskin käyttöliittymä on
+vielä kesken, joten ohjelmaa ei pysty tällä hetkellä ajamaan sen testaamiseksi. Nämä ovat työn alla.
