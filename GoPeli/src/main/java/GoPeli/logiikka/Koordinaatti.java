@@ -1,5 +1,7 @@
 package GoPeli.logiikka;
 
+import java.util.HashSet;
+
 /**
  * Luokka kuvaa pelilaudan koordinaattia, sisältäen sen leveys- ja korkeussuuntaiset arvot
  */
@@ -7,6 +9,8 @@ public class Koordinaatti {
     private final byte x;
     private final byte y;
     private Vari vari;
+    private HashSet<Koordinaatti> naapurit;
+    private Ryhma ryhma;
     
     /**
      * Konstruktori jolla luodaan koordinaatti-olio kolmella parametrilla
@@ -18,6 +22,8 @@ public class Koordinaatti {
         this.x = x;
         this.y = y;
         this.vari = vari;
+        this.naapurit = new HashSet<>();
+        this.ryhma = null;
     }
     
     /**
@@ -40,5 +46,25 @@ public class Koordinaatti {
     
     public Vari getVari() {
         return this.vari;
+    }
+    
+    public void setVari(Vari vari) {
+        this.vari = vari;
+    }
+    
+    public HashSet<Koordinaatti> getNaapurit() {
+        return this.naapurit;
+    }
+    
+    public void asetaNaapuri(Koordinaatti naapuri) {
+        this.naapurit.add(naapuri);
+    }
+    
+    public void asetaRyhma(Ryhma ryhma) {
+        this.ryhma = ryhma;
+    }
+    
+    public Ryhma getRyhma() {
+        return this.ryhma;
     }
 }
