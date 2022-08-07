@@ -151,6 +151,12 @@ public class PelinHallinnointi {
             }
         }
         
+        for (Ryhma poistettavaRyhma : this.ryhmat) {
+            if (poistettavaRyhma.kivet.isEmpty()) {
+                this.ryhmat.remove(poistettavaRyhma);
+            }
+        }
+        
         for (Ryhma erivarinenNaapuri : erivarisetNaapurit) {
             erivarinenNaapuri.poistaVapaus(koordinaatti);
             if (erivarinenNaapuri.getVapaudet().isEmpty()) {
