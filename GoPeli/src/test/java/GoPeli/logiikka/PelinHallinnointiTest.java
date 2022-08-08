@@ -1,4 +1,4 @@
-package GoPeli.logiikka;
+/* package GoPeli.logiikka;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -194,3 +194,4 @@ public class PelinHallinnointiTest {
         assertEquals("On jo kivi", pelinHallinnointi.lisaaSiirto(koordinaatti));
     }
 }
+*/
