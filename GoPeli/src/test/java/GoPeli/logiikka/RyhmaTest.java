@@ -40,21 +40,21 @@ public class RyhmaTest {
     public void konstruktoriVarmistaaArvonVarille() {
         Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
         
-        assertNotNull(ryhma.vari);
+        assertNotNull(ryhma.getVari());
     }
     
     @Test
     public void konstruktoriVarmistaaEttaKivilleOnSetti() {
         Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
         
-        assertNotNull(ryhma.kivet);
+        assertNotNull(ryhma.getKivet());
     }
     
     @Test
     public void konstruktoriVarmistaaEttaVapauksilleOnSetti() {
         Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
         
-        assertNotNull(ryhma.vapaudet);
+        assertNotNull(ryhma.getVapaudet());
     }
     
     @Test
@@ -63,7 +63,7 @@ public class RyhmaTest {
         
         ryhma.lisaaVapaus(new Koordinaatti((byte) 1, (byte) 2));
         
-        assertEquals(1, ryhma.vapaudet.size());
+        assertEquals(1, ryhma.getVapaudet().size());
     }
     
     @Test
@@ -87,7 +87,7 @@ public class RyhmaTest {
         
         ryhma.poistaVapaus(koordinaatti);
         
-        assertEquals(0, ryhma.vapaudet.size());
+        assertEquals(0, ryhma.getVapaudet().size());
     }
     
     @Test
@@ -102,7 +102,7 @@ public class RyhmaTest {
         
         ryhma.poistaVapaus(koordinaatti);
         
-        assertFalse(ryhma.vapaudet.contains(koordinaatti));
+        assertFalse(ryhma.getVapaudet().contains(koordinaatti));
     }
     
     @Test
@@ -134,7 +134,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertTrue(yhdistettyRyhma.kivet.contains(ekaKivi));
+        assertTrue(yhdistettyRyhma.getKivet().contains(ekaKivi));
     }
     
     @Test
@@ -152,7 +152,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertTrue(yhdistettyRyhma.kivet.contains(tokaKivi));
+        assertTrue(yhdistettyRyhma.getKivet().contains(tokaKivi));
     }
     
     @Test
@@ -170,7 +170,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertTrue(yhdistettyRyhma.vapaudet.contains(ekaVapaus));
+        assertTrue(yhdistettyRyhma.getVapaudet().contains(ekaVapaus));
     }
     
     @Test
@@ -188,7 +188,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertTrue(yhdistettyRyhma.vapaudet.contains(tokaVapaus));
+        assertTrue(yhdistettyRyhma.getVapaudet().contains(tokaVapaus));
     }
     
     @Test
@@ -210,7 +210,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ekaRyhma.yhdista(tokaRyhma);
         
-        assertFalse(yhdistettyRyhma.vapaudet.contains(tokaVapaus));
+        assertFalse(yhdistettyRyhma.getVapaudet().contains(tokaVapaus));
     }
     
     @Test
@@ -228,7 +228,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertFalse(yhdistettyRyhma.kivet.contains(tokaKivi));
+        assertFalse(yhdistettyRyhma.getKivet().contains(tokaKivi));
     }
     
     @Test
@@ -246,7 +246,7 @@ public class RyhmaTest {
         
         Ryhma yhdistettyRyhma = ryhma.yhdista(toinenRyhma);
         
-        assertFalse(yhdistettyRyhma.vapaudet.contains(tokaVapaus));
+        assertFalse(yhdistettyRyhma.getVapaudet().contains(tokaVapaus));
     }
     
     @Test

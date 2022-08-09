@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class Ryhma {
-    final Vari vari;
-    HashSet<Koordinaatti> kivet;
-    HashSet<Koordinaatti> vapaudet;
+    private final Vari vari;
+    private HashSet<Koordinaatti> kivet;
+    private HashSet<Koordinaatti> vapaudet;
     
     public Ryhma(Vari vari, HashSet<Koordinaatti> kivet, HashSet<Koordinaatti> vapaudet) {
         this.vari = vari;
