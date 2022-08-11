@@ -454,4 +454,20 @@ public class RyhmaTest {
         
         assertFalse(ekaRyhma.equals(tokaRyhma));
     }
+    
+    @Test
+    public void equalsErottaaRyhmanNullArvosta() {
+        Ryhma ekaRyhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Ryhma tokaRyhma = null;
+        
+        assertFalse(ekaRyhma.equals(tokaRyhma));
+    }
+    
+    @Test
+    public void equalsErottaaRyhmanToisenLuokanOliosta() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        assertFalse(ryhma.equals(koordinaatti));
+    }
 }

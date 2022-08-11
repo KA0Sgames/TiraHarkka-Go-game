@@ -31,6 +31,15 @@ public class Pelilauta {
         return this.ryhmat;
     }
     
+    public Ryhma etsiRyhma(Koordinaatti koordinaatti) {
+        for (Ryhma ryhma : this.ryhmat) {
+            if (ryhma.getKivet().contains(koordinaatti)) {
+                return ryhma;
+            }
+        }
+        return null;
+    }
+    
     public String lisaaSiirto(Vari pelaaja, Koordinaatti koordinaatti) {
         
         if (this.lauta[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()] != null) {
@@ -42,7 +51,7 @@ public class Pelilauta {
         HashSet<Koordinaatti> vapaudet = new HashSet<>();
         
         for (Koordinaatti naapuri : koordinaatti.getNaapurit()) {
-            Ryhma naapuriRyhma = etsiNaapuriRyhma(naapuri);
+            Ryhma naapuriRyhma = etsiRyhma(naapuri);
             
             if (naapuriRyhma == null) {
                 vapaudet.add(naapuri);
@@ -65,46 +74,46 @@ public class Pelilauta {
         
         for (Ryhma naapuri : samanvarisetNaapurit) {
             ryhma = ryhma.yhdista(naapuri);
+            this.ryhmat.remove(naapuri);
         }
         
         this.ryhmat.add(ryhma);
-        
-        for (Ryhma poistettavaRyhma : this.ryhmat) {
-            if (poistettavaRyhma.getKivet().isEmpty()) {
-                this.ryhmat.remove(poistettavaRyhma);
-            }
-        }
-        
+
         for (Ryhma erivarinenNaapuri : erivarisetNaapurit) {
+            this.ryhmat.remove(erivarinenNaapuri);
             erivarinenNaapuri.poistaVapaus(koordinaatti);
+            this.ryhmat.add(erivarinenNaapuri);
+
             if (erivarinenNaapuri.getVapaudet().isEmpty()) {
                 poistaRyhma(erivarinenNaapuri);
-                this.ryhmat.remove(erivarinenNaapuri);
             }
         }
         return "Onnistui";
     }
     
-    private Ryhma etsiNaapuriRyhma(Koordinaatti koordinaatti) {
-        for (Ryhma ryhma : this.ryhmat) {
-                if (ryhma.getKivet().contains(koordinaatti)) {
-                    return ryhma;
-                }
-            }
-        return null;
-    }
-    
     private void poistaRyhma(Ryhma ryhma) {
         for (Koordinaatti koordinaatti : ryhma.getKivet()) {
+            HashSet<Ryhma> naapuriRyhmat = new HashSet<>();
+            
             for (Koordinaatti naapuri : koordinaatti.getNaapurit()) {
-                Ryhma naapuriRyhma = etsiNaapuriRyhma(naapuri);
+                Ryhma naapuriRyhma = etsiRyhma(naapuri);
                 
-                if (!ryhma.equals(naapuriRyhma)) {
+                if (!naapuriRyhmat.contains(naapuriRyhma)) {
+                    naapuriRyhmat.add(naapuriRyhma);
+                }
+
+            }
+            
+            for (Ryhma naapuriRyhma : naapuriRyhmat) {
+                if (!(ryhma.equals(naapuriRyhma))) {
+                    this.ryhmat.remove(naapuriRyhma);
                     naapuriRyhma.lisaaVapaus(koordinaatti);
+                    this.ryhmat.add(naapuriRyhma);
                 }
             }
             
             this.lauta[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()] = null;
         }
+        this.ryhmat.remove(ryhma);
     }
 }

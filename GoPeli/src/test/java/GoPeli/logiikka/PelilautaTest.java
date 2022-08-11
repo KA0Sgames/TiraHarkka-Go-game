@@ -149,14 +149,229 @@ public class PelilautaTest {
         
         pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
         
-        HashSet<Ryhma> ryhmat = pelilauta.getRyhmat();
-        
-        Ryhma ryhma = new Ryhma(Vari.VALKOINEN, new HashSet<>(), new HashSet<>());
-        
-        for (Ryhma setissa : ryhmat) {
-            ryhma = setissa;
-        }
+        Ryhma ryhma = pelilauta.etsiRyhma(new Koordinaatti((byte) 1, (byte) 2));
         
         assertEquals(Vari.MUSTA, ryhma.getVari());
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaOikeanMaaranVapauksiaLisatessaRyhmanTyhjalleLaudalle1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 0);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        assertEquals(2, pelilauta.etsiRyhma(koordinaatti).getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaOikeanMaaranVapauksiaLisatessaRyhmanTyhjalleLaudalle2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        assertEquals(3, pelilauta.etsiRyhma(koordinaatti).getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaOikeanMaaranVapauksiaLisatessaRyhmanTyhjalleLaudalle3() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        assertEquals(4, pelilauta.etsiRyhma(koordinaatti).getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLaskeeOikeanMaaranRyhmiaKahdelleVierekkaiselleRyhmalle() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 2);
+        Koordinaatti toinenKoordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, toinenKoordinaatti);
+        
+        assertEquals(2, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLaskeeOikeanMaaranVapauksiaKahdelleVierekkaiselleRyhmalle1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 2);
+        Koordinaatti toinenKoordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, toinenKoordinaatti);
+        
+        assertEquals(2, pelilauta.etsiRyhma(koordinaatti).getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLaskeeOikeanMaaranVapauksiaKahdelleVierekkaiselleRyhmalle2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 2);
+        Koordinaatti toinenKoordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, toinenKoordinaatti);
+        
+        assertEquals(3, pelilauta.etsiRyhma(toinenKoordinaatti).getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLaskeeOikeanMaaranRyhmiaYhdistetylleRyhmalle1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        
+        assertEquals(1, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLaskeeOikeanMaaranRyhmiaYhdistetylleRyhmalle2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        
+        assertEquals(1, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoPoistaaRyhmanKunRyhmaSyodaan() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+        
+        assertEquals(4, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoEiRikoRyhmiaJoilleLisataanVapaus1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+        
+        Ryhma ryhma = pelilauta.etsiRyhma(new Koordinaatti((byte) 0, (byte) 1));
+        
+        assertEquals(3, ryhma.vapauksienMaara());
+    }
+    
+    @Test
+    public void lisaaSiirtoEiRikoRyhmiaJoilleLisataanVapaus2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+        
+        Ryhma ryhma = pelilauta.etsiRyhma(new Koordinaatti((byte) 0, (byte) 1));
+        
+        assertTrue(pelilauta.getRyhmat().contains(ryhma));
+    }
+    
+    @Test
+    public void lisaaSiirtoVarmistaaEttaSyodynKivenKoordinaatissaNull() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+
+        assertNull(pelilauta.getLauta()[1][1]);
+    }
+    
+    @Test
+    public void suurempiTestiRyhmienMaarasta() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 5));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 3));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 2, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 2, (byte) 5));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 3, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 3, (byte) 5));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 3));
+        
+        assertEquals(5, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoYhdistaaRyhmanOikeinKunKaksiSamaanNaapuriRyhmaanKuuluvaa() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        
+        assertEquals(1, pelilauta.getRyhmat().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoPoistaaVapaudenOikeinKunPoistettavaKoskeeKahteenNaapuriKiveen() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        
+        Ryhma ryhma = pelilauta.etsiRyhma(new Koordinaatti((byte) 1, (byte) 1));
+        
+        assertEquals(3, ryhma.getVapaudet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoPoistaaRyhmanOikeinKunKahdenSamanRyhmanKivenVapausViedaanViimeiseksi1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 0, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        
+        assertNull(pelilauta.etsiRyhma(new Koordinaatti((byte) 1, (byte) 1)));
+    }
+    
+    @Test
+    public void lisaaSiirtoPoistaaRyhmanOikeinKunKahdenSamanRyhmanKivenVapausViedaanViimeiseksi2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 0, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 2, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        
+        assertEquals(3, pelilauta.getRyhmat().size());
     }
 }

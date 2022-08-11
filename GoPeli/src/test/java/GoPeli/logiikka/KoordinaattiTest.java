@@ -1,5 +1,6 @@
 package GoPeli.logiikka;
 
+import java.util.HashSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -132,5 +133,44 @@ public class KoordinaattiTest {
         Koordinaatti naapuriKoordinaatti = new Koordinaatti((byte) 8, (byte) 9);
         
         assertFalse(koordinaatti.getNaapurit().contains(naapuriKoordinaatti));  
+    }
+    
+    @Test
+    public void equalsTunnistaaSamatKoordinaattiOliot() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        assertTrue(koordinaatti.equals(koordinaatti));
+    }
+    
+    @Test
+    public void equalsErottaaKoordinaatinNullArvosta() {
+        Koordinaatti eka = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti toka = null;
+        
+        assertFalse(eka.equals(toka));
+    }
+    
+    @Test
+    public void equalsErottaaKoordinaatinToisenLuokanOliosta() {
+        Koordinaatti eka = new Koordinaatti((byte) 1, (byte) 2);
+        Ryhma toka = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        
+        assertFalse(eka.equals(toka));
+    }
+    
+    @Test
+    public void equalsErottaaKaksiEriKoordinaattiaToisistaanYPerusteella() {
+        Koordinaatti eka = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti toka = new Koordinaatti((byte) 2, (byte) 2);
+        
+        assertFalse(eka.equals(toka));
+    }
+    
+    @Test
+    public void equalsErottaaKaksiEriKoordinaattiaToisistaanXPerusteella() {
+        Koordinaatti eka = new Koordinaatti((byte) 2, (byte) 1);
+        Koordinaatti toka = new Koordinaatti((byte) 2, (byte) 2);
+        
+        assertFalse(eka.equals(toka));
     }
 }
