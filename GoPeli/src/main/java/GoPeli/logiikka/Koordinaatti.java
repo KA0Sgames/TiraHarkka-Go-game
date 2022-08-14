@@ -20,6 +20,15 @@ public class Koordinaatti {
     }
     
     /**
+     * Kopiokonstruktori, jolla luodaan uusi koordinaatti, jolla alkuperäistä vastaavat arvot.
+     * @param koordinaatti parametrina kopioitava koordinaatti.
+     */
+    public Koordinaatti(Koordinaatti koordinaatti) {
+        this.x = koordinaatti.x;
+        this.y = koordinaatti.y;
+    }
+    
+    /**
      * Metodi palauttaa koordinaatin leveyssuuntaisen arvon
      * @return koordinaatin x arvo.
      */

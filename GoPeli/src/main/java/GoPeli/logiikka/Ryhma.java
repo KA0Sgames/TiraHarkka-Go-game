@@ -14,6 +14,25 @@ public class Ryhma {
         this.vapaudet = vapaudet;
     }
     
+    /**
+     * Kopiokonstruktori, jolla luodaan uusi ryhmä, jolla alkuperäistä vastaavat arvot ja setit, mutta oliot
+     * seteissä uusia, mutta alkuperäistä vastaavia, eli niiden muuttaminen ei vaikuta alkuperäisen ryhmän olioihin.
+     * @param ryhma parametrina kopioitava ryhmä.
+     */
+    public Ryhma(Ryhma ryhma) {
+        this.vari = ryhma.vari;
+        this.vapaudet = new HashSet<>();
+        this.kivet = new HashSet<>();
+        
+        for (Koordinaatti koordinaatti : ryhma.vapaudet) {
+            this.vapaudet.add(new Koordinaatti(koordinaatti));
+        }
+        
+        for (Koordinaatti koordinaatti : ryhma.kivet) {
+            this.kivet.add(new Koordinaatti(koordinaatti));
+        }
+    }
+    
     public void poistaVapaus(Koordinaatti koordinaatti) {
         this.vapaudet.remove(koordinaatti);
     }

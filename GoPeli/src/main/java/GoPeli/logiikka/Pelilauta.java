@@ -23,6 +23,31 @@ public class Pelilauta {
         }
     }
     
+    /**
+     * Kopiokonstruktori, jolla saa laudasta syväkopion.
+     * @param pelilauta parametrina kopioitava pelilauta.
+     */
+    public Pelilauta(Pelilauta pelilauta) {
+        HashSet<Ryhma> ryhmat = new HashSet<>();
+        for (Ryhma ryhma : pelilauta.getRyhmat()) {
+            ryhmat.add(new Ryhma(ryhma));
+        }
+        
+        this.ryhmat = ryhmat;
+        
+        this.lauta = new Koordinaatti[9][9];
+        
+        for (int rivi = 0; rivi < 9; rivi++) {
+            for (int sarake = 0; sarake < 9; sarake++) {
+                if (pelilauta.getLauta()[rivi][sarake] == null) {
+                    this.lauta[rivi][sarake] = null;
+                } else {
+                    this.lauta[rivi][sarake] = new Koordinaatti(pelilauta.lauta[rivi][sarake]);
+                }
+            }
+        }
+    }
+    
     public Koordinaatti[][] getLauta() {
         return this.lauta;
     }
