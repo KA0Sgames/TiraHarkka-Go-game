@@ -51,6 +51,38 @@ public class KoordinaattiTest {
     }
     
     @Test
+    public void kopioKonstruktoriLuoKoordinaattiOlion() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti kopio = new Koordinaatti(koordinaatti);
+        
+        assertNotNull(kopio);
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoOlionJollaOnOikeaYArvo() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti kopio = new Koordinaatti(koordinaatti);
+        
+        assertEquals(1, kopio.getYKoordinaatti());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoOlionJollaOnOikeaXArvo() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti kopio = new Koordinaatti(koordinaatti);
+        
+        assertEquals(2, kopio.getXKoordinaatti());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoOlionJokaEiOleSamaKuinAlkuperainen() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti kopio = new Koordinaatti(koordinaatti);
+        
+        assertFalse(koordinaatti == kopio);
+    }
+    
+    @Test
     public void getNaapuritPalauttaaOikeanKokoisenSetin1() {
         Koordinaatti koordinaatti = new Koordinaatti((byte) 0, (byte) 0);
         

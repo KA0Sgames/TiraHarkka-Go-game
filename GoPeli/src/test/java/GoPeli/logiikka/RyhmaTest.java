@@ -58,6 +58,118 @@ public class RyhmaTest {
     }
     
     @Test
+    public void kopioKonstruktoriLuoRyhmaOlion() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        assertNotNull(kopio);
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOnSamaVariKuinAlkuperaisella1() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        assertEquals(Vari.MUSTA, kopio.getVari());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOnSamaVariKuinAlkuperaisella2() {
+        Ryhma ryhma = new Ryhma(Vari.VALKOINEN, new HashSet<>(), new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        assertEquals(Vari.VALKOINEN, kopio.getVari());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaTyhjaSettiKivilleKunAlkuperaisellaOnNain() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        assertTrue(kopio.getKivet().isEmpty());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaTyhjaSettiVapauksilleKunAlkuperaisellaOnNain() {
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        assertTrue(kopio.getVapaudet().isEmpty());
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOikeaKivi() {
+        Koordinaatti kivi = new Koordinaatti((byte) 1, (byte) 2);
+        HashSet<Koordinaatti> kivet = new HashSet<>();
+        kivet.add(kivi);
+        
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, kivet, new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        Koordinaatti kopionkivi = new Koordinaatti((byte) 0, (byte) 0);
+        
+        for (Koordinaatti kopiossaOleva : kopio.getKivet()) {
+            kopionkivi = kopiossaOleva;
+        }
+        
+        assertTrue(kivi.equals(kopionkivi));
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOikeaMuttaEriKivi() {
+        Koordinaatti kivi = new Koordinaatti((byte) 1, (byte) 2);
+        HashSet<Koordinaatti> kivet = new HashSet<>();
+        kivet.add(kivi);
+        
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, kivet, new HashSet<>());
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        Koordinaatti kopionKivi = new Koordinaatti((byte) 0, (byte) 0);
+        
+        for (Koordinaatti kopiossaOleva : kopio.getKivet()) {
+            kopionKivi = kopiossaOleva;
+        }
+        
+        assertFalse(kivi == kopionKivi);
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOikeaVapaus() {
+        Koordinaatti vapaus = new Koordinaatti((byte) 1, (byte) 2);
+        HashSet<Koordinaatti> vapaudet = new HashSet<>();
+        vapaudet.add(vapaus);
+        
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), vapaudet);
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        Koordinaatti kopionVapaus = new Koordinaatti((byte) 0, (byte) 0);
+        
+        for (Koordinaatti kopiossaOleva : kopio.getVapaudet()) {
+            kopionVapaus = kopiossaOleva;
+        }
+        
+        assertTrue(vapaus.equals(kopionVapaus));
+    }
+    
+    @Test
+    public void kopioKonstruktoriLuoRyhmanJollaOikeaMuttaEriVapaus() {
+        Koordinaatti vapaus = new Koordinaatti((byte) 1, (byte) 2);
+        HashSet<Koordinaatti> vapaudet = new HashSet<>();
+        vapaudet.add(vapaus);
+        
+        Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), vapaudet);
+        Ryhma kopio = new Ryhma(ryhma);
+        
+        Koordinaatti kopionVapaus = new Koordinaatti((byte) 0, (byte) 0);
+        
+        for (Koordinaatti kopiossaOleva : kopio.getVapaudet()) {
+            kopionVapaus = kopiossaOleva;
+        }
+        
+        assertFalse(vapaus == kopionVapaus);
+    }
+    
+    @Test
     public void lisaaVapausLisaaVapauden() {
         Ryhma ryhma = new Ryhma(Vari.MUSTA, new HashSet<>(), new HashSet<>());
         

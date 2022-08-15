@@ -104,6 +104,142 @@ public class PelilautaTest {
     }
     
     @Test
+    public void kopioKonstruktoriLuoOlion() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        assertNotNull(kopio);
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioTyhjanPelilaudanOikein() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        Koordinaatti[][] lauta = kopio.getLauta();
+        boolean tyhja = true;
+        
+        for (int rivi = 0; rivi < 9; rivi++) {
+            for (int sarake = 0; sarake < 9; sarake++) {
+                if (lauta[rivi][sarake] != null) {
+                    tyhja = false;
+                }
+            }
+        }
+        
+        assertTrue(tyhja);
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioTyhjanRyhmatArvonOikein() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        assertTrue(kopio.getRyhmat().isEmpty());
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioiOikeinLaudanJollaKivi1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        assertEquals(1, kopio.getRyhmat().size());
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioiOikeinLaudanJollaKivi2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        assertNotNull(kopio.getLauta()[1][2]);
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioiUuteenOlioonLaudanKoordinaatin() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        Koordinaatti alkuperaisenKoordinaatti = pelilauta.getLauta()[1][2];
+        Koordinaatti kopionKoordinaatti = kopio.getLauta()[1][2];
+        
+        assertFalse(alkuperaisenKoordinaatti == kopionKoordinaatti);
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioiAlkuperaistaVastaavanKoordinaatin() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        Koordinaatti alkuperaisenKoordinaatti = pelilauta.getLauta()[1][2];
+        Koordinaatti kopionKoordinaatti = kopio.getLauta()[1][2];
+        
+        assertTrue(alkuperaisenKoordinaatti.equals(kopionKoordinaatti));
+    }
+    
+    @Test
+    public void kopioKonstruktoriKopioiUuteenOlioonAlkuperaisenRyhman() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        Ryhma alkuperaisenRyhma = null;
+        
+        for (Ryhma ryhma : pelilauta.getRyhmat()) {
+            alkuperaisenRyhma = ryhma;
+        }
+        
+        Ryhma kopionRyhma = null;
+        
+        for (Ryhma ryhma : kopio.getRyhmat()) {
+            kopionRyhma = ryhma;
+        }
+        
+        assertFalse(alkuperaisenRyhma == kopionRyhma);
+    }
+    
+    public void kopioKonstruktoriKopioiAlkuperaistaVastaavanRyhman() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelilauta kopio = new Pelilauta(pelilauta);
+        
+        Ryhma alkuperaisenRyhma = null;
+        
+        for (Ryhma ryhma : pelilauta.getRyhmat()) {
+            alkuperaisenRyhma = ryhma;
+        }
+        
+        Ryhma kopionRyhma = null;
+        
+        for (Ryhma ryhma : kopio.getRyhmat()) {
+            kopionRyhma = ryhma;
+        }
+        
+        assertFalse(alkuperaisenRyhma.equals(kopionRyhma));
+    }
+    
+    @Test
     public void lisaaSiirtoEiAnnaLisataSiirtoaKoordinaattiinJossaOnJoKivi() {
         Koordinaatti kivi = new Koordinaatti((byte) 1, (byte) 2);
         HashSet<Koordinaatti> kivet = new HashSet<>();
