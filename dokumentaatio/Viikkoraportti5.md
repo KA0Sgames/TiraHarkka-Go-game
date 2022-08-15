@@ -4,8 +4,9 @@
 
 - 14.8. Kirjoitin Siirto-luokan joka kuvaa seuraavaa siirtoa, sekä testit tälle luokalle. Tähän meni tunti.
 - 14.8. Aloitin kirjoittamaan Pelitilanne-luokkaa ja muokkasin Ryhma, Koordinaatti ja Pelilauta luokkia lisäämällä kopiointikonstruktorit, jotta pelilaudasta saa tehtyä syväkopion. Tähän meni 2 tuntia.
+- 15.8. Koordinaatti, Ryhma ja Pelilauta luokkien testit päivitetty kattamaan kopiokonstruktorit. Tunti.
 
-###### Käytetty aika tällä viikolla yhteensä n. 3 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 4 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
