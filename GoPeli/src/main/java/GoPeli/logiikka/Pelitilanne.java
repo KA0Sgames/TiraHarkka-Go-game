@@ -32,25 +32,25 @@ public class Pelitilanne {
             seuraavaLauta = new Pelilauta(this.lauta);
             String onkoJoKivi = seuraavaLauta.lisaaSiirto(this.pelaaja, this.siirto.getKoordinaatti());
             
-            String oliItseatari = null;
+            String eiVapauksia = null;
             if (onkoItseatari(seuraavaLauta, this.siirto.getKoordinaatti())) {
-                oliItseatari = "Siirto on itseatari";
+                eiVapauksia = "Siirron jälkeen ei ole vapauksia";
             }
                 
             String koSaanto = null;
             if (rikkookoSiirtoKoSaantoa(seuraavaLauta)) {
-                koSaanto = "Siirto rikkoo Ko sääntöä";
+                koSaanto = "Siirto rikkoo Ko-sääntöä";
             }
             
-            if (onkoJoKivi.equals("Onnistui") && oliItseatari == null && koSaanto == null) {
+            if (onkoJoKivi.equals("Onnistui") && eiVapauksia == null && koSaanto == null) {
                 Vari seuraavaPelaaja = seuraavaPelaaja();
-                return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.getSiirto(), null);
+                return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null);
             } else {
                 String virhe = null;
                 if (onkoJoKivi.equals("On jo kivi")) {
                     virhe = "On jo kivi";
-                } else if (oliItseatari != null) {
-                    virhe = oliItseatari;
+                } else if (eiVapauksia != null) {
+                    virhe = eiVapauksia;
                 } else {
                     virhe = koSaanto;
                 }
@@ -58,14 +58,9 @@ public class Pelitilanne {
             }
         }
         
-        Vari seuraavaPelaaja = null;
-        if (this.pelaaja == Vari.MUSTA) {
-            seuraavaPelaaja = Vari.VALKOINEN;
-        } else {
-            seuraavaPelaaja = Vari.MUSTA;
-        }
+        Vari seuraavaPelaaja = seuraavaPelaaja();
         
-        return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, null, null);
+        return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null);
     }
     
     /**
@@ -119,8 +114,8 @@ public class Pelitilanne {
         return (this.edellinenSiirto.getPassaus() && toiseksiViimeinen.getPassaus());
     }
     
-    public void setSiirto(Koordinaatti koordinaatti) {
-        this.siirto = Siirto.pelaa(koordinaatti);
+    public void setSiirto(Siirto siirto) {
+        this.siirto = siirto;
     }
     
     private boolean onkoItseatari(Pelilauta lauta, Koordinaatti siirto) {

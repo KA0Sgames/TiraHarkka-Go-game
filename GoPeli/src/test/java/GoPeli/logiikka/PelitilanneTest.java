@@ -1,5 +1,6 @@
 package GoPeli.logiikka;
 
+import java.util.HashSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -117,10 +118,10 @@ public class PelitilanneTest {
         Pelitilanne ensimmainen = Pelitilanne.uusiPeli();
         Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
         
-        ensimmainen.setSiirto(koordinaatti);
+        ensimmainen.setSiirto(Siirto.pelaa(koordinaatti));
         Pelitilanne toinen = ensimmainen.lisaaSiirto();
         
-        toinen.setSiirto(koordinaatti);
+        toinen.setSiirto(Siirto.pelaa(koordinaatti));
         Pelitilanne kolmas = toinen.lisaaSiirto();
         
         assertEquals("On jo kivi", kolmas.getLaitonSiirto());
@@ -131,12 +132,119 @@ public class PelitilanneTest {
         Pelitilanne ensimmainen = Pelitilanne.uusiPeli();
         Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
         
-        ensimmainen.setSiirto(koordinaatti);
+        ensimmainen.setSiirto(Siirto.pelaa(koordinaatti));
         Pelitilanne toinen = ensimmainen.lisaaSiirto();
         
-        toinen.setSiirto(koordinaatti);
+        toinen.setSiirto(Siirto.pelaa(koordinaatti));
         Pelitilanne kolmas = toinen.lisaaSiirto();
         
         assertTrue(toinen.getPelilauta().equals(kolmas.getPelilauta()));
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunSiirronJalkeenEiVapauksia1() {
+        Koordinaatti eka = new Koordinaatti((byte) 0, (byte) 1);
+        Koordinaatti toka = new Koordinaatti((byte) 1, (byte) 0);
+        
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        lauta.lisaaSiirto(Vari.MUSTA, eka);
+        lauta.lisaaSiirto(Vari.MUSTA, toka);
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, Vari.VALKOINEN, null, null, null, null);
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 0)));
+        
+        assertEquals("Siirron jälkeen ei ole vapauksia", tilanne.lisaaSiirto().getLaitonSiirto());
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunSiirronJalkeenEiVapauksia2() {
+        Koordinaatti eka = new Koordinaatti((byte) 0, (byte) 1);
+        Koordinaatti toka = new Koordinaatti((byte) 1, (byte) 0);
+        
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        lauta.lisaaSiirto(Vari.MUSTA, eka);
+        lauta.lisaaSiirto(Vari.MUSTA, toka);
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, Vari.VALKOINEN, null, null, null, null);
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 0)));
+        
+        tilanne = tilanne.lisaaSiirto();
+        
+        assertTrue(lauta.equals(tilanne.getPelilauta()));
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunSiirronJalkeenEiVapauksia3() {
+        Koordinaatti eka = new Koordinaatti((byte) 0, (byte) 1);
+        Koordinaatti toka = new Koordinaatti((byte) 1, (byte) 1);
+        Koordinaatti kolmas = new Koordinaatti((byte) 2, (byte) 0);
+        Koordinaatti valkoinen = new Koordinaatti((byte) 0, (byte) 0);
+        
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        lauta.lisaaSiirto(Vari.MUSTA, eka);
+        lauta.lisaaSiirto(Vari.MUSTA, toka);
+        lauta.lisaaSiirto(Vari.VALKOINEN, valkoinen);
+        lauta.lisaaSiirto(Vari.MUSTA, kolmas);
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, Vari.VALKOINEN, null, null, null, null);
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 1, (byte) 0)));
+        
+        assertEquals("Siirron jälkeen ei ole vapauksia", tilanne.lisaaSiirto().getLaitonSiirto());
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunSiirtoYrittaaOttaaKonTakaisin1() {
+        Koordinaatti musta1 = new Koordinaatti((byte) 0, (byte) 1);
+        Koordinaatti musta2 = new Koordinaatti((byte) 1, (byte) 0);
+        Koordinaatti musta3 = new Koordinaatti((byte) 1, (byte) 2);
+        Koordinaatti musta4 = new Koordinaatti((byte) 2, (byte) 1);
+        
+        Koordinaatti valkoinen1 = new Koordinaatti((byte) 0, (byte) 2);
+        Koordinaatti valkoinen2 = new Koordinaatti((byte) 1, (byte) 3);
+        Koordinaatti valkoinen3 = new Koordinaatti((byte) 2, (byte) 2);
+        
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        lauta.lisaaSiirto(Vari.MUSTA, musta1);
+        lauta.lisaaSiirto(Vari.VALKOINEN, valkoinen1);
+        lauta.lisaaSiirto(Vari.MUSTA, musta2);
+        lauta.lisaaSiirto(Vari.VALKOINEN, valkoinen2);
+        lauta.lisaaSiirto(Vari.MUSTA, musta3);
+        lauta.lisaaSiirto(Vari.VALKOINEN, valkoinen3);
+        lauta.lisaaSiirto(Vari.MUSTA, musta4);
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, Vari.VALKOINEN, null, null, null, null);
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 1, (byte) 1)));
+        tilanne = tilanne.lisaaSiirto();
+        
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 1, (byte) 2)));
+        
+        assertEquals("Siirto rikkoo Ko-sääntöä", tilanne.lisaaSiirto().getLaitonSiirto());
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunPassataan1() {
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        lauta.lisaaSiirto(Vari.MUSTA, koordinaatti);
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, Vari.VALKOINEN, null, Siirto.passaus(), null, null);
+        
+        tilanne = tilanne.lisaaSiirto();
+        
+        assertTrue(lauta.equals(tilanne.getPelilauta()));
+    }
+    
+    @Test
+    public void lisaaSiirtoPalauttaaOikeanOlionKunPassataan2() {
+        Pelitilanne tilanne = Pelitilanne.uusiPeli();
+        Koordinaatti koordinaatti = new Koordinaatti((byte) 1, (byte) 2);
+        
+        tilanne.setSiirto(Siirto.pelaa(koordinaatti));
+        tilanne = tilanne.lisaaSiirto();
+        
+        tilanne.setSiirto(Siirto.passaus());
+        tilanne = tilanne.lisaaSiirto();
+        
+        assertTrue(tilanne.getEdellinenSiirto().equals(new Siirto(null, true, false)));
     }
 }
