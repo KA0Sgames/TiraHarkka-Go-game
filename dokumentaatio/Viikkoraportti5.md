@@ -6,13 +6,15 @@
 - 14.8. Aloitin kirjoittamaan Pelitilanne-luokkaa ja muokkasin Ryhma, Koordinaatti ja Pelilauta luokkia lisäämällä kopiointikonstruktorit, jotta pelilaudasta saa tehtyä syväkopion. Tähän meni 2 tuntia.
 - 15.8. Koordinaatti, Ryhma ja Pelilauta luokkien testit päivitetty kattamaan kopiokonstruktorit. Tunti.
 - 15.8. Pelitilanne luokan lisaaSiirto, sekä peliOhi metodit kirjoitettu, sekä niille apumetodeja, sekä Pelitilanteelle testejä. Noin 3 tuntia.
+- 16.8. Pelitilanne luokalle kirjoitettu lisää testejä ja pieniä muokkauksia Pelitilanteen lisaaSiirto metodiin, sekä equals Siirto luokalle. Noin 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 7 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 9 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
 - 14.8. Siirto-luokka tehty ja Pelitilanne-luokka aloitettu ja sen pelilaudan syväkopiointi toteutettu.
 - 15.8. Pelitilanne luokkaa jatkettu useilla metodeilla, erityisesti siirron lisääminen laillisen siirron tarkastuksineen.
+- 16.8. Pelitilanne luokka lähes valmis testeineen.
 
 ### Mitä opin tällä viikolla?
 
@@ -26,3 +28,4 @@
 
 - 14.8. Pelitilanne luokan kirjoittaminen loppuun ja testien kirjoittaminen sille.
 - 15.8. Pelitilanteen kanssa jatkan, eritoten testien.
+- 16.8. Pitää miettiä miten kaapatut kivet lasketaan ja toteuttaa kirjanpito niistä, sekä testit tähän toiminnallisuuteen. Käyttöliittymän kirjoitus puhtaaksi niin, että voisi jo pelata pelejä.
