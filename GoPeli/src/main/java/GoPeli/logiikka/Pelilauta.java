@@ -8,6 +8,7 @@ import java.util.HashSet;
 public class Pelilauta {
     private Koordinaatti[][] lauta;
     private HashSet<Ryhma> ryhmat;
+    private HashSet<Koordinaatti> kaapatutKivet;
     
     /**
      * Konstruktori alustaa pelilaudan kooksi 9x9.
@@ -15,6 +16,7 @@ public class Pelilauta {
     public Pelilauta(HashSet<Ryhma> ryhmat) {
         this.lauta = new Koordinaatti[9][9];
         this.ryhmat = ryhmat;
+        this.kaapatutKivet = new HashSet<>();
         
         for (Ryhma ryhma : ryhmat) {
             for (Koordinaatti koordinaatti : ryhma.getKivet()) {
@@ -28,12 +30,12 @@ public class Pelilauta {
      * @param pelilauta parametrina kopioitava pelilauta.
      */
     public Pelilauta(Pelilauta pelilauta) {
-        HashSet<Ryhma> ryhmat = new HashSet<>();
+        this.kaapatutKivet = new HashSet<>();
+        this.ryhmat = new HashSet<>();
+
         for (Ryhma ryhma : pelilauta.getRyhmat()) {
-            ryhmat.add(new Ryhma(ryhma));
+            this.ryhmat.add(new Ryhma(ryhma));
         }
-        
-        this.ryhmat = ryhmat;
         
         this.lauta = new Koordinaatti[9][9];
         
@@ -54,6 +56,10 @@ public class Pelilauta {
     
     public HashSet<Ryhma> getRyhmat() {
         return this.ryhmat;
+    }
+    
+    public HashSet<Koordinaatti> getKaapatutKivet() {
+        return this.kaapatutKivet;
     }
     
     public Ryhma etsiRyhma(Koordinaatti koordinaatti) {
@@ -137,6 +143,7 @@ public class Pelilauta {
                 }
             }
             
+            this.kaapatutKivet.add(koordinaatti);
             this.lauta[koordinaatti.getYKoordinaatti()][koordinaatti.getXKoordinaatti()] = null;
         }
         this.ryhmat.remove(ryhma);

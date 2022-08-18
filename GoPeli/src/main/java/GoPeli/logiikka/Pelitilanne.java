@@ -10,14 +10,18 @@ public class Pelitilanne {
     private Siirto siirto;
     private Siirto edellinenSiirto;
     private String laitonSiirto;
+    private int kaapatutMustat;
+    private int kaapatutValkoiset;
     
-    public Pelitilanne(Pelilauta pelilauta, Vari pelaaja, Pelitilanne edellinenTilanne, Siirto siirto, Siirto edellinen, String laitonSiirto) {
+    public Pelitilanne(Pelilauta pelilauta, Vari pelaaja, Pelitilanne edellinenTilanne, Siirto siirto, Siirto edellinen, String laitonSiirto, int kaapatutMustat, int kaapatutValkoiset) {
         this.lauta = pelilauta;
         this.pelaaja = pelaaja;
         this.edellinenTilanne = edellinenTilanne;
         this.siirto = siirto;
         this.edellinenSiirto = edellinen;
         this.laitonSiirto = laitonSiirto;
+        this.kaapatutMustat = kaapatutMustat;
+        this.kaapatutValkoiset = kaapatutValkoiset;
     }
     
     /**
@@ -43,8 +47,16 @@ public class Pelitilanne {
             }
             
             if (onkoJoKivi.equals("Onnistui") && eiVapauksia == null && koSaanto == null) {
+                if (this.pelaaja == Vari.MUSTA) {
+                    kaapatutValkoiset += seuraavaLauta.getKaapatutKivet().size();
+                } else {
+                    kaapatutMustat += seuraavaLauta.getKaapatutKivet().size();
+                }
+                
                 Vari seuraavaPelaaja = seuraavaPelaaja();
-                return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null);
+                
+                return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null, this.kaapatutMustat, this.kaapatutValkoiset);
+                
             } else {
                 String virhe = null;
                 if (onkoJoKivi.equals("On jo kivi")) {
@@ -54,13 +66,14 @@ public class Pelitilanne {
                 } else {
                     virhe = koSaanto;
                 }
-                return new Pelitilanne(this.lauta, this.pelaaja, this.edellinenTilanne, null, this.edellinenSiirto, virhe);
+                
+                return new Pelitilanne(this.lauta, this.pelaaja, this.edellinenTilanne, null, this.edellinenSiirto, virhe, this.kaapatutMustat, this.kaapatutValkoiset);
             }
         }
         
         Vari seuraavaPelaaja = seuraavaPelaaja();
         
-        return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null);
+        return new Pelitilanne(seuraavaLauta, seuraavaPelaaja, this, null, this.siirto, null, this.kaapatutMustat, this.kaapatutValkoiset);
     }
     
     /**
@@ -69,7 +82,7 @@ public class Pelitilanne {
      * @return palauttaa uuden pelitilanteen, joka toimii lähtötilanteena uudelle pelille.
      */
     public static Pelitilanne uusiPeli() {
-        return new Pelitilanne(new Pelilauta(new HashSet<>()), Vari.MUSTA, null, null, null, null);
+        return new Pelitilanne(new Pelilauta(new HashSet<>()), Vari.MUSTA, null, null, null, null, 0, 0);
     }
     
     public Pelilauta getPelilauta() {
@@ -94,6 +107,14 @@ public class Pelitilanne {
     
     public String getLaitonSiirto() {
         return this.laitonSiirto;
+    }
+    
+    public int getKaapatutMustat() {
+        return this.kaapatutMustat;
+    }
+    
+    public int getKaapatutValkoiset() {
+        return this.kaapatutValkoiset;
     }
     
     public boolean peliOhi() {

@@ -510,4 +510,75 @@ public class PelilautaTest {
         
         assertEquals(3, pelilauta.getRyhmat().size());
     }
+    
+    @Test
+    public void lisaaSiirtoLisaaPoistetutKivetOikein1() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        
+        assertEquals(1, pelilauta.getKaapatutKivet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaPoistetutKivetOikein2() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 2));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 1));
+        
+        Koordinaatti kaapattu = null;
+        
+        for (Koordinaatti koordinaatti : pelilauta.getKaapatutKivet()) {
+            kaapattu = koordinaatti;
+        }
+        
+        assertTrue(kaapattu.equals(new Koordinaatti((byte) 1, (byte) 1)));
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaPoistetutKivetOikein3() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 0));
+        
+        assertEquals(2, pelilauta.getKaapatutKivet().size());
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaPoistetutKivetOikein4() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 0));
+        
+        assertTrue(pelilauta.getKaapatutKivet().contains(new Koordinaatti((byte) 0, (byte) 0)));
+    }
+    
+    @Test
+    public void lisaaSiirtoLisaaPoistetutKivetOikein5() {
+        Pelilauta pelilauta = new Pelilauta(new HashSet<>());
+        
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 0, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 1, (byte) 1));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 0, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) 1, (byte) 0));
+        pelilauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) 2, (byte) 0));
+        
+        assertTrue(pelilauta.getKaapatutKivet().contains(new Koordinaatti((byte) 1, (byte) 0)));
+    }
 }
