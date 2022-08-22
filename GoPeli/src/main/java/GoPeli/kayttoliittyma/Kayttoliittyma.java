@@ -7,9 +7,11 @@ import GoPeli.logiikka.Vari;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,26 +43,44 @@ public class Kayttoliittyma extends Application {
         Label mustanVangit = new Label("Mustan vangit");
         mustanVangit.setMinWidth(100);
         mustanVangit.setMaxWidth(100);
+        mustanVangit.setAlignment(Pos.CENTER);
         
         Label valkoisenVangit = new Label("Valkoisen vangit");
         valkoisenVangit.setMinWidth(100);
         valkoisenVangit.setMaxWidth(100);
+        valkoisenVangit.setAlignment(Pos.CENTER);
         
         Label mustanVankienMaara = new Label("" + pelitilanne.getKaapatutValkoiset());
         mustanVankienMaara.setMinWidth(100);
         mustanVankienMaara.setMaxWidth(100);
+        mustanVankienMaara.setAlignment(Pos.CENTER);
         
         Label valkoisenVankienMaara = new Label("" + pelitilanne.getKaapatutMustat());
         valkoisenVankienMaara.setMinWidth(100);
         valkoisenVankienMaara.setMaxWidth(100);
+        valkoisenVankienMaara.setAlignment(Pos.CENTER);
+        
+        Button passaus = new Button("Passaa");
+        Button luovutus = new Button("Luovuta");
         
         HBox vankitekstit = new HBox(mustanVangit, valkoisenVangit);
         HBox vankimaarat = new HBox(mustanVankienMaara, valkoisenVankienMaara);
+        HBox napit = new HBox(passaus, luovutus);
+        
+        napit.setAlignment(Pos.CENTER);
+        napit.setSpacing(30);
+        
+        Label viesti = new Label("");
+        viesti.setMinWidth(200);
+        viesti.setMaxWidth(200);
+        viesti.setAlignment(Pos.CENTER);
         
         
         
-        VBox oikeaMenu = new VBox(vankitekstit, vankimaarat);
+        VBox oikeaMenu = new VBox(vankitekstit, vankimaarat, napit, viesti);
         oikeaMenu.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        oikeaMenu.setSpacing(10);
+        oikeaMenu.setPadding(new Insets(10, 0, 0, 0));
         
         HBox asettelu = new HBox(pelialusta, oikeaMenu);
         
@@ -75,31 +95,46 @@ public class Kayttoliittyma extends Application {
         pelialusta.getChildren().add(lauta);
 
         pelialusta.setOnMouseClicked(event -> {
-            hiirtaPainettu(event);
-            pelialusta.getChildren().remove(lauta);
-            pelialusta.getChildren().removeAll(this.mustanKivet.values());
-            pelialusta.getChildren().removeAll(this.valkoisenKivet.values());
+            hiirtaPainettu(event, viesti);
+            paivitaPelialusta(pelialusta, lauta);
+            paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
             
-            pelialusta.getChildren().add(lauta);
-            pelialusta.getChildren().addAll(this.mustanKivet.values());
-            pelialusta.getChildren().addAll(this.valkoisenKivet.values());
+        });
+        
+        passaus.setOnMouseClicked(tapahtuma -> {
+            this.pelitilanne.setSiirto(Siirto.passaus());
+            this.pelitilanne = this.pelitilanne.lisaaSiirto();
+            
+            if (this.pelitilanne.peliOhi()) {
+                viesti.setText("Peli ohi!");
+            }
+        });
+        
+        luovutus.setOnMouseClicked(tapahtuma -> {
+            this.pelitilanne.setSiirto(Siirto.luovutus());
+            this.pelitilanne = this.pelitilanne.lisaaSiirto();
+            
+            if (this.pelitilanne.peliOhi()) {
+                viesti.setText("Peli ohi!");
+            }
         });
         
         ikkuna.setScene(scene);
         ikkuna.show();    
     }
     
-    private void hiirtaPainettu(MouseEvent e) {
+    private void hiirtaPainettu(MouseEvent e, Label viesti) {
         if (e.getY() > 25 && e.getY() < 475 && e.getX() > 25 && e.getX() < 475) {
             int yKoordinaatti = ((int) e.getY() - 25) / 50;
             int xKoordinaatti = ((int) e.getX() - 25) / 50;
 
-            kasitteleKoordinaatit(yKoordinaatti, xKoordinaatti);
+            kasitteleKoordinaatit(yKoordinaatti, xKoordinaatti, viesti);
         }
     }
     
-    private void kasitteleKoordinaatit(int y, int x) {
+    private void kasitteleKoordinaatit(int y, int x, Label viesti) {
         Vari pelaaja = this.pelitilanne.getPelaaja();
+        viesti.setText("");
         
         this.pelitilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) y, (byte) x)));
         this.pelitilanne = this.pelitilanne.lisaaSiirto();
@@ -130,7 +165,24 @@ public class Kayttoliittyma extends Application {
                     this.mustanKivet.remove(koordinaatti.getYKoordinaatti() * 10 + koordinaatti.getXKoordinaatti());
                 }
             }
+        } else {
+            viesti.setText(this.pelitilanne.getLaitonSiirto());
         }
+    }
+    
+    private void paivitaPelialusta(Group pelialusta, ImageView lauta) {
+        pelialusta.getChildren().remove(lauta);
+            pelialusta.getChildren().removeAll(this.mustanKivet.values());
+            pelialusta.getChildren().removeAll(this.valkoisenKivet.values());
+            
+            pelialusta.getChildren().add(lauta);
+            pelialusta.getChildren().addAll(this.mustanKivet.values());
+            pelialusta.getChildren().addAll(this.valkoisenKivet.values());
+    }
+    
+    private void paivitaVangit(Label mustanVankienMaara, Label valkoisenVankienMaara) {
+        mustanVankienMaara.setText("" + this.pelitilanne.getKaapatutValkoiset());
+        valkoisenVankienMaara.setText("" + this.pelitilanne.getKaapatutMustat());
     }
     
     public static void main(String[] args) {
