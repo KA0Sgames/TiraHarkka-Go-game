@@ -17,7 +17,7 @@
 - 14.8. Siirto-luokka tehty ja Pelitilanne-luokka aloitettu ja sen pelilaudan syväkopiointi toteutettu.
 - 15.8. Pelitilanne luokkaa jatkettu useilla metodeilla, erityisesti siirron lisääminen laillisen siirron tarkastuksineen.
 - 16.8. Pelitilanne luokka lähes valmis testeineen.
-- 18.7. Loogiset luokat näiltä näkymin vaikuttavat valmiilta. Käyttöliittymän päätoiminnallisuus toteutettu.
+- 18.8. Loogiset luokat näiltä näkymin vaikuttavat valmiilta. Käyttöliittymän päätoiminnallisuus toteutettu.
 
 ### Mitä opin tällä viikolla?
 
