@@ -139,6 +139,30 @@ public class Pelitilanne {
         this.siirto = siirto;
     }
     
+    public Siirto[] laillisetSiirrot() {
+        Siirto[] lailliset = new Siirto[10];
+        int tyhjaIndeksi = 0;
+        
+        for (byte rivi = 0; rivi < 9; rivi++) {
+            for (byte sarake = 0; sarake < 9; sarake++) {
+                Siirto siirto = Siirto.pelaa(new Koordinaatti(rivi, sarake));
+                
+                this.setSiirto(siirto);
+                Pelitilanne uusiTilanne = this.lisaaSiirto();
+                
+                if (uusiTilanne.getLaitonSiirto() == null) {
+                    if (tyhjaIndeksi == lailliset.length) {
+                        lailliset = uusiTaulukko(lailliset);
+                    }
+                    lailliset[tyhjaIndeksi] = siirto;
+                    tyhjaIndeksi++;
+                }
+            }
+        }
+        
+        return lailliset;
+    }
+    
     private boolean onkoItseatari(Pelilauta lauta, Koordinaatti siirto) {
         return lauta.etsiRyhma(siirto).vapauksienMaara() == 0;
     }
@@ -163,5 +187,15 @@ public class Pelitilanne {
         }
         
         return Vari.MUSTA;
+    }
+    
+    private Siirto[] uusiTaulukko(Siirto[] taulukko) {
+        Siirto[] uusiTaulukko = new Siirto[taulukko.length * 2];
+        
+        for (int i = 0; i < taulukko.length; i++) {
+            uusiTaulukko[i] = taulukko[i];
+        }
+        
+        return uusiTaulukko;
     }
 }

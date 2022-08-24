@@ -292,4 +292,34 @@ public class PelitilanneTest {
         
         assertEquals(2, tilanne.getKaapatutMustat());
     }
+    
+    @Test
+    public void laillisetSiirrotPalauttaaTaulukon() {
+        Pelitilanne tilanne = Pelitilanne.uusiPeli();
+        
+        assertNotNull(tilanne.laillisetSiirrot());
+    }
+    
+    @Test
+    public void laillisetSiirrotPalauttaaOikeanKokoisenTaulukon() {
+        Pelitilanne tilanne = Pelitilanne.uusiPeli();
+        
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 0)));
+        tilanne = tilanne.lisaaSiirto();
+        
+        assertEquals(80, tilanne.laillisetSiirrot().length);
+    }
+    
+    @Test
+    public void laillisetSiirrotPalauttaaOikeanTaulukon1() {
+        Pelitilanne tilanne = Pelitilanne.uusiPeli();
+        
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 0)));
+        tilanne = tilanne.lisaaSiirto();
+        
+        tilanne.setSiirto(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 3)));
+        tilanne = tilanne.lisaaSiirto();
+        
+        assertTrue(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 4)).equals(tilanne.laillisetSiirrot()[2]));
+    }
 }
