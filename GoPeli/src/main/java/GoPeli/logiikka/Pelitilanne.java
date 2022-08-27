@@ -163,6 +163,84 @@ public class Pelitilanne {
         return lailliset;
     }
     
+    public Vari laskeVoittaja() {
+        double mustanPisteet = 0;
+        double valkeanPisteet = 7.5;
+        
+        for (Ryhma ryhma : this.lauta.getRyhmat()) {
+            if (ryhma.getVari() == Vari.MUSTA) {
+                mustanPisteet += ryhma.getKivet().size();
+            } else {
+                valkeanPisteet += ryhma.getKivet().size();
+            }
+        }
+        
+        /*  Hyvin naaivi pisteidenlaskuj‰rjestelm‰. Olettaa, ett‰ tyhj‰t alueet ovat yhden pisteen
+            kokoisia, eli ett‰ alueet on t‰ytetty silmi‰ lukuunottamatta. Ottaa huomioon sekin, eli
+            jos pisteen vieress‰ on sek‰ mustan, ett‰ valkean kivi, tosin Monte Carlo algoritmin
+            naiivi botti t‰t‰ ei ota huomioon, eli se saattaa t‰ytt‰‰ toiseksiviimeisen vapauden
+            sekiss‰ olevalta ryhm‰lt‰.
+        */
+        for (byte rivi = 0; rivi < 9; rivi++) {
+            for (byte sarake = 0; sarake < 9; sarake++) {
+                boolean mustanKiviVieressa = false;
+                boolean valkeanKiviVieressa = false;
+                
+                for (Ryhma ryhma : this.lauta.getRyhmat()) {
+                    if (rivi > 0) {
+                        if (ryhma.getKivet().contains(new Koordinaatti((byte) (rivi - 1), sarake))) {
+                            if (ryhma.getVari() == Vari.MUSTA) {
+                                mustanKiviVieressa = true;
+                            } else {
+                                valkeanKiviVieressa = true;
+                            }
+                        }
+                    }
+                    if (rivi < 8) {
+                        if (ryhma.getKivet().contains(new Koordinaatti((byte) (rivi + 1), sarake))) {
+                            if (ryhma.getVari() == Vari.MUSTA) {
+                                mustanKiviVieressa = true;
+                            } else {
+                                valkeanKiviVieressa = true;
+                            }
+                        }
+                    }
+                    if (sarake > 0) {
+                        if (ryhma.getKivet().contains(new Koordinaatti(rivi, (byte) (sarake - 1)))) {
+                            if (ryhma.getVari() == Vari.MUSTA) {
+                                mustanKiviVieressa = true;
+                            } else {
+                                valkeanKiviVieressa = true;
+                            }
+                        }
+                    }
+                    if (sarake < 8) {
+                        if (ryhma.getKivet().contains(new Koordinaatti(rivi, (byte) (sarake + 1)))) {
+                            if (ryhma.getVari() == Vari.MUSTA) {
+                                mustanKiviVieressa = true;
+                            } else {
+                                valkeanKiviVieressa = true;
+                            }
+                        }
+                    }
+                }
+                if (mustanKiviVieressa && valkeanKiviVieressa) {
+                    continue;
+                } else if (mustanKiviVieressa) {
+                    mustanPisteet++;
+                } else {
+                    valkeanPisteet++;
+                }
+            }
+        }
+        
+        if (mustanPisteet > valkeanPisteet) {
+            return Vari.MUSTA;
+        } else {
+            return Vari.VALKOINEN;
+        }
+    }
+    
     private boolean onkoItseatari(Pelilauta lauta, Koordinaatti siirto) {
         return lauta.etsiRyhma(siirto).vapauksienMaara() == 0;
     }

@@ -322,4 +322,47 @@ public class PelitilanneTest {
         
         assertTrue(Siirto.pelaa(new Koordinaatti((byte) 0, (byte) 4)).equals(tilanne.laillisetSiirrot()[2]));
     }
+    
+    @Test
+    public void laskeVoittajaLaskeeMustanVoitonOikein() {
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        
+        for (int rivi = 0; rivi < 5; rivi++) {
+            for (int sarake = 0; sarake < 9; sarake ++) {
+                if (rivi != sarake || rivi == 4) {
+                    lauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) rivi, (byte) sarake));
+                }
+            }
+        }
+        for (int rivi = 5; rivi < 9; rivi++) {
+            for (int sarake = 0; sarake < 9; sarake ++) {
+                if (rivi != sarake || rivi == 5) {
+                    lauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) rivi, (byte) sarake));
+                }
+            }
+        }
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, null, null, null, null, null, 0, 0);
+        
+        assertEquals(Vari.MUSTA, tilanne.laskeVoittaja());
+    }
+    
+    @Test
+    public void laskeVoittajaLaskeeValkoisenVoitonOikein() {
+        Pelilauta lauta = new Pelilauta(new HashSet<>());
+        
+        for (int rivi = 0; rivi < 9; rivi++) {
+            for (int sarake = 0; sarake < 9; sarake++) {
+                if (rivi < sarake && (Math.abs(rivi - sarake) != 2)) {
+                    lauta.lisaaSiirto(Vari.MUSTA, new Koordinaatti((byte) rivi, (byte) sarake));
+                } else if ((Math.abs(rivi - sarake) != 2)) {
+                    lauta.lisaaSiirto(Vari.VALKOINEN, new Koordinaatti((byte) rivi, (byte) sarake));
+                }
+            }
+        }
+        
+        Pelitilanne tilanne = new Pelitilanne(lauta, null, null, null, null, null, 0, 0);
+        
+        assertEquals(Vari.VALKOINEN, tilanne.laskeVoittaja());
+    }
 }
