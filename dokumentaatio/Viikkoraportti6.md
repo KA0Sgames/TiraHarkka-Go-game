@@ -7,14 +7,16 @@
 - 24.8. Tein MCPHSolmu luokan kuvaamaan Monte Carlo puuhaku puun solmuja, ja sille konstruktorin ja getterit. Muokkasin Pelitilanne luokkaa niin, että siltä saa pelitilanteen lailliset siirrot. Yhteensä 2,5 tuntia.
 - 25.8. Kirjoitin MCPHSolmu luokan ja sen testit loppuun. Kirjoitin Tekoaly luokkaan Monte Carlo puuhaku algoritmin pelin simulointia vaille. Yhteensä 4 tuntia.
 - 27.8. Ohjaajan kanssa Monte Carlo algoritmin toiminnan selvittelyä yms. Tunti.
+- 27.8. Tein Pelitilanne luokkaan metodin laskeVoittaja joka palauttaa pelin voittajan värin. Tämä on hyvin naiivi toteutus, joka olettaa, että laudalla ei ole suurempia kuin yhden pisteen kokoisia alueita. Tunti.
 
-###### Käytetty aika tällä viikolla yhteensä n. 10,5 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 11,5 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
 - 22.8. Käyttöliittymän toiminta kirjoitettu tekoälyn lisäystä vaille.
 - 24.8. Monte Carlo puuhaku puun solmuja varten aloitettu luokka.
 - 25.8. Monte Carlo puuhaku puun solmuja varten kirjoitettu luokka loppuun ja sille testit. Monte Carlo puuhaun algoritmi kirjoitettu Tekoaly luokkaan.
+- 27.8. Pisteiden laskuun tehty metodi Pelitilanne luokalle ja sille testit.
 
 ### Mitä opin tällä viikolla?
 
