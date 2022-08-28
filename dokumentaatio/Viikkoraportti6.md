@@ -9,8 +9,9 @@
 - 27.8. Ohjaajan kanssa Monte Carlo algoritmin toiminnan selvittelyä yms. Tunti.
 - 27.8. Tein Pelitilanne luokkaan metodin laskeVoittaja joka palauttaa pelin voittajan värin. Tämä on hyvin naiivi toteutus, joka olettaa, että laudalla ei ole suurempia kuin yhden pisteen kokoisia alueita. Tunti.
 - 28.8. Tekoälylle kirjoitettu metodi simuloiSattumanvarainenPeli. Noin 3 tuntia.
+- 28.8. Tekoälyn lisääminen käyttöliittymään. Bugin etsintää tekoälystä. Yksi tunti.
 
-###### Käytetty aika tällä viikolla yhteensä n. 14,5 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 15,5 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -30,10 +31,11 @@
 
 - 22.8. Pitää selvitellä miten varmistetaan, ettei käyttöliittymä ota siirtoa sillä aikaa, kun tekoäly pohtii omaa siirtoaan.
 - 25.8. Miten sattumanvaraisen pelin simulointi toteutetaan niin, että sen kaikki vaiheet lisätään Monte Carlo hakupuuhun, sekä miten voisi halutulla siirrolla hyödyntää jo aikaisemmin generoitua puuta.
+- 28.8. Jostain syystä käyttöliittymä jää nyt jumiin kun koitetaan klikata ensimmäistä siirtoa. Edes oma siirto ei tule näkyville, vaikka eventissä pitäisi olla ruudun päivitys ennen tekoälyn siirron hakua.
 
 ### Mitä teen seuraavaksi?
 
 - 22.8. Tekoälyn kirjoittamisen aloitus.
 - 24.8. Monte Carlo puuhaku puun solmuja varten tehdyn luokan kirjoitus loppuun.
 - 25.8. Pitää "naiivi" botti kirjoittaa tuottamaan sattumanvarainen peli, sekä toiminnallisuus pisteiden laskentaan, kun lopputilanne on saavutettu.
-- 28.8. Lisään käyttöliittymän käyttämään tekoälyä, sekä testit pitäisi kirjoittaa Tekoaly-luokalle.
+- 28.8. Etsi bugi tekoälystä, yksi null pointer exceptionin aiheuttava löydetty, mutta nyt käyttöliittymä jää jumiin, lisäämättä siirtoja.
