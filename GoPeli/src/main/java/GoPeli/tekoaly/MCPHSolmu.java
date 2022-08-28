@@ -8,8 +8,8 @@ import java.util.Random;
 public class MCPHSolmu {
     private Pelitilanne pelitilanne;
     private MCPHSolmu vanhempi;
-    private Siirto viimeinenSiirto;
     private MCPHSolmu[] lapset;
+    private Siirto viimeinenSiirto;
     private Random random;
     private int mustanVoitot;
     private int valkoisenVoitot;

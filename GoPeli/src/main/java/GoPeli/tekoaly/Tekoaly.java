@@ -15,6 +15,10 @@ public class Tekoaly {
         this.random = new Random();
     }
     
+    public Tekoaly(Random random) {
+        this.random = random;
+    }
+    
     public Siirto valitseSiirto(Pelitilanne tilanne){
         MCPHSolmu juuri = new MCPHSolmu(tilanne, null, tilanne.getEdellinenSiirto(), this.random);
         
@@ -91,6 +95,7 @@ public class Tekoaly {
             for (int indeksi = 0; indeksi < kandidaatit.length; indeksi++) {
                 if (kandidaatit[indeksi] == null) {
                     tyhjaIndeksi = indeksi;
+                    break;
                 }
             }
             
@@ -106,7 +111,6 @@ public class Tekoaly {
                     kivi, tai jos siirto on laudan reunalla, niin kaikissa kulmittain viereisissä
                     pisteissä on samanvärinen kivi.
                 */
-            
                 HashSet<Koordinaatti> naapurit = kandidaatti.getKoordinaatti().getNaapurit();
             
                 /*
@@ -121,6 +125,9 @@ public class Tekoaly {
                         tilanne.setSiirto(kandidaatti);
                         break;
                     }
+                }
+                if (tilanne.getSiirto() != null) {
+                    break;
                 }
             
                 /*

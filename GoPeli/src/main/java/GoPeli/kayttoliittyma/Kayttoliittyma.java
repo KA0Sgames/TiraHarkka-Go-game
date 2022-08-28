@@ -4,6 +4,7 @@ import GoPeli.logiikka.Koordinaatti;
 import GoPeli.logiikka.Pelitilanne;
 import GoPeli.logiikka.Siirto;
 import GoPeli.logiikka.Vari;
+import GoPeli.tekoaly.Tekoaly;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -27,12 +28,14 @@ public class Kayttoliittyma extends Application {
     private HashMap<Integer, ImageView> mustanKivet;
     private HashMap<Integer, ImageView> valkoisenKivet;
     private Pelitilanne pelitilanne;
+    private Tekoaly tekoaly;
     
     @Override
     public void init() {
         this.mustanKivet = new HashMap<>();
         this.valkoisenKivet = new HashMap<>();
         this.pelitilanne = Pelitilanne.uusiPeli();
+        this.tekoaly = new Tekoaly();
     }
     
     @Override
@@ -75,9 +78,12 @@ public class Kayttoliittyma extends Application {
         viesti.setMaxWidth(200);
         viesti.setAlignment(Pos.CENTER);
         
+        Label tulos = new Label("");
+        tulos.setMinWidth(200);
+        tulos.setMaxWidth(200);
+        tulos.setAlignment(Pos.CENTER);        
         
-        
-        VBox oikeaMenu = new VBox(vankitekstit, vankimaarat, napit, viesti);
+        VBox oikeaMenu = new VBox(vankitekstit, vankimaarat, napit, viesti, tulos);
         oikeaMenu.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         oikeaMenu.setSpacing(10);
         oikeaMenu.setPadding(new Insets(10, 0, 0, 0));
@@ -95,10 +101,39 @@ public class Kayttoliittyma extends Application {
         pelialusta.getChildren().add(lauta);
 
         pelialusta.setOnMouseClicked(event -> {
-            hiirtaPainettu(event, viesti);
-            paivitaPelialusta(pelialusta, lauta);
-            paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
-            
+            if (this.pelitilanne.getPelaaja() == Vari.MUSTA) {
+                hiirtaPainettu(event, viesti);
+                paivitaPelialusta(pelialusta, lauta);
+                paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
+                
+                Siirto tekoalynSiirto = this.tekoaly.valitseSiirto(this.pelitilanne);
+                
+                this.pelitilanne.setSiirto(tekoalynSiirto);
+                this.pelitilanne = this.pelitilanne.lisaaSiirto();
+                
+                paivitaPelialusta(pelialusta, lauta);
+                paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
+                
+                if (tekoalynSiirto.equals(Siirto.passaus())) {
+                    viesti.setText("Tekoäly passasi.");
+                }
+                
+                if (this.pelitilanne.peliOhi()) {
+                    viesti.setText("Peli ohi!");
+                    
+                    if (tekoalynSiirto.equals(Siirto.luovutus())) {
+                        tulos.setText("Musta voitti luovutuksella!");
+                    } else {
+                        Vari voittaja = this.pelitilanne.laskeVoittaja();
+                        
+                        if (voittaja == Vari.MUSTA) {
+                            tulos.setText("Musta voitti!");
+                        } else {
+                            tulos.setText("Valkoinen voitti!");
+                        }
+                    }
+                }
+            }            
         });
         
         passaus.setOnMouseClicked(tapahtuma -> {
@@ -107,16 +142,20 @@ public class Kayttoliittyma extends Application {
             
             if (this.pelitilanne.peliOhi()) {
                 viesti.setText("Peli ohi!");
+                Vari voittaja = this.pelitilanne.laskeVoittaja();
+                if (voittaja == Vari.MUSTA) {
+                    tulos.setText("Musta voitti!");
+                } else {
+                    tulos.setText("Valkoinen voitti!");
+                }
             }
         });
         
         luovutus.setOnMouseClicked(tapahtuma -> {
             this.pelitilanne.setSiirto(Siirto.luovutus());
             this.pelitilanne = this.pelitilanne.lisaaSiirto();
-            
-            if (this.pelitilanne.peliOhi()) {
-                viesti.setText("Peli ohi!");
-            }
+            viesti.setText("Peli ohi!");
+            tulos.setText("Valkoinen voitti luovutuksella.");
         });
         
         ikkuna.setScene(scene);
