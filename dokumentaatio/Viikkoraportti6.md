@@ -8,8 +8,9 @@
 - 25.8. Kirjoitin MCPHSolmu luokan ja sen testit loppuun. Kirjoitin Tekoaly luokkaan Monte Carlo puuhaku algoritmin pelin simulointia vaille. Yhteensä 4 tuntia.
 - 27.8. Ohjaajan kanssa Monte Carlo algoritmin toiminnan selvittelyä yms. Tunti.
 - 27.8. Tein Pelitilanne luokkaan metodin laskeVoittaja joka palauttaa pelin voittajan värin. Tämä on hyvin naiivi toteutus, joka olettaa, että laudalla ei ole suurempia kuin yhden pisteen kokoisia alueita. Tunti.
+- 28.8. Tekoälylle kirjoitettu metodi simuloiSattumanvarainenPeli. Noin 3 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 11,5 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 14,5 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -17,6 +18,7 @@
 - 24.8. Monte Carlo puuhaku puun solmuja varten aloitettu luokka.
 - 25.8. Monte Carlo puuhaku puun solmuja varten kirjoitettu luokka loppuun ja sille testit. Monte Carlo puuhaun algoritmi kirjoitettu Tekoaly luokkaan.
 - 27.8. Pisteiden laskuun tehty metodi Pelitilanne luokalle ja sille testit.
+- 28.8. Kirjoitettu tekoälylle simuloiSattumanvarainenPeli-metodi. Jos korjattavaa ei ilmene, niin tekoälyn pitäisi olla valmis.
 
 ### Mitä opin tällä viikolla?
 
@@ -34,3 +36,4 @@
 - 22.8. Tekoälyn kirjoittamisen aloitus.
 - 24.8. Monte Carlo puuhaku puun solmuja varten tehdyn luokan kirjoitus loppuun.
 - 25.8. Pitää "naiivi" botti kirjoittaa tuottamaan sattumanvarainen peli, sekä toiminnallisuus pisteiden laskentaan, kun lopputilanne on saavutettu.
+- 28.8. Lisään käyttöliittymän käyttämään tekoälyä, sekä testit pitäisi kirjoittaa Tekoaly-luokalle.
