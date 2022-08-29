@@ -10,8 +10,9 @@
 - 27.8. Tein Pelitilanne luokkaan metodin laskeVoittaja joka palauttaa pelin voittajan värin. Tämä on hyvin naiivi toteutus, joka olettaa, että laudalla ei ole suurempia kuin yhden pisteen kokoisia alueita. Tunti.
 - 28.8. Tekoälylle kirjoitettu metodi simuloiSattumanvarainenPeli. Noin 3 tuntia.
 - 28.8. Tekoälyn lisääminen käyttöliittymään. Bugin etsintää tekoälystä. Yksi tunti.
+- 29.8. Yritin korjata bugia tekoälystä. Noin 3 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 15,5 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 18,5 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -32,6 +33,7 @@
 - 22.8. Pitää selvitellä miten varmistetaan, ettei käyttöliittymä ota siirtoa sillä aikaa, kun tekoäly pohtii omaa siirtoaan.
 - 25.8. Miten sattumanvaraisen pelin simulointi toteutetaan niin, että sen kaikki vaiheet lisätään Monte Carlo hakupuuhun, sekä miten voisi halutulla siirrolla hyödyntää jo aikaisemmin generoitua puuta.
 - 28.8. Jostain syystä käyttöliittymä jää nyt jumiin kun koitetaan klikata ensimmäistä siirtoa. Edes oma siirto ei tule näkyville, vaikka eventissä pitäisi olla ruudun päivitys ennen tekoälyn siirron hakua.
+- 29.8. En jostain syystä löydä, miksi pelin simulointi jää looppiin. Jostain syystä se jossain vaiheessa simulaatiota passaa, mutta ei kahdesti peräkkäin ja vaikka tekoäly on passannut edellisellä siirrollaan, se ei passaa uusiksi seuraavalla.
 
 ### Mitä teen seuraavaksi?
 
