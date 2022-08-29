@@ -56,7 +56,6 @@ public class Tekoaly {
                 parasSiirto = lapsi.getViimeinenSiirto();
             }
         }
-        
         return parasSiirto;
     }
     
@@ -100,6 +99,7 @@ public class Tekoaly {
             }
             
             while (tyhjaIndeksi > 0) {
+                tilanne.setSiirto(null);
             
                 int sattumanvarainenIndeksi = this.random.nextInt(tyhjaIndeksi);
                 Siirto kandidaatti = kandidaatit[sattumanvarainenIndeksi];
@@ -120,82 +120,81 @@ public class Tekoaly {
                 */
                 for (Koordinaatti naapuri : naapurit) {
                     Ryhma ryhma = tilanne.getPelilauta().etsiRyhma(naapuri);
-                
-                    if (ryhma == null || ryhma.getVari() != tilanne.getPelaaja()) {
+
+                    if (ryhma == null) {
+                        tilanne.setSiirto(kandidaatti);
+                        break;
+                    } else if (ryhma.getVari() != tilanne.getPelaaja()) {
                         tilanne.setSiirto(kandidaatti);
                         break;
                     }
                 }
                 if (tilanne.getSiirto() != null) {
                     break;
+                } else {
+                    System.out.println("thsiu");
                 }
             
                 /*
                     Jos edellisess‰ vaiheessa ei ole asetettu seuraavaa siirtoa (hyv‰ksytty
-                    kandidaattia) niin lis‰t‰‰n kulmittain vierekk‰iset pisteet, jotka ovat laudalla
-                    settiin.
+                    kandidaattia) niin tarkastellaan kulmapisteit‰.
                 */
-                HashSet<Koordinaatti> kulmaKoordinaatit = new HashSet<>();
+                Koordinaatti[] kulmaKoordinaatit = new Koordinaatti[4];
                 
-                if (
-                    kandidaatti.getKoordinaatti().getYKoordinaatti() > 0 &&
-                    kandidaatti.getKoordinaatti().getXKoordinaatti() > 0) {
-                    
-                        kulmaKoordinaatit.add(new Koordinaatti(
-                            (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() - 1),
-                            (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() - 1)
-                    ));
-                }
-                if (
-                    kandidaatti.getKoordinaatti().getYKoordinaatti() < 8 &&
-                    kandidaatti.getKoordinaatti().getXKoordinaatti() > 0) {
-                    
-                        kulmaKoordinaatit.add(new Koordinaatti(
-                            (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() + 1),
-                            (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() - 1)
-                    ));
-                }
-                if (
-                    kandidaatti.getKoordinaatti().getYKoordinaatti() > 0 &&
-                    kandidaatti.getKoordinaatti().getXKoordinaatti() < 8) {
-                    
-                        kulmaKoordinaatit.add(new Koordinaatti(
-                            (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() - 1),
-                            (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() + 1)
-                    ));
-                }
-                if (
-                    kandidaatti.getKoordinaatti().getYKoordinaatti() < 8 &&
-                    kandidaatti.getKoordinaatti().getXKoordinaatti() < 8) {
-                    
-                        kulmaKoordinaatit.add(new Koordinaatti(
-                            (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() + 1),
-                            (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() + 1)
-                    ));
-                }
+                kulmaKoordinaatit[0] = new Koordinaatti(
+                        (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() - 1),
+                        (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() - 1));
                 
-                /*
-                    Jos kulmittain vierekk‰isi‰ siirtoja on nelj‰, kolmessa niist‰ t‰ytyy olla
-                    samanv‰rinen kivi kuin pelaajan v‰ri, jotta kandidaatti on silm‰.
-                    Jos taas v‰hemm‰n, niin kaikkien t‰ytyy olla samanv‰risi‰.
-                */
-                int kulmia = kulmaKoordinaatit.size();
-                int samanvarisiaKulmanaapureita = 0;
+                kulmaKoordinaatit[1] = new Koordinaatti(
+                        (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() + 1),
+                        (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() - 1));
                 
-                for (Koordinaatti kulmaNaapuri : kulmaKoordinaatit) {
-                    Ryhma ryhma = tilanne.getPelilauta().etsiRyhma(kulmaNaapuri);
-                    
-                    if (ryhma != null) {
+                kulmaKoordinaatit[2] = new Koordinaatti(
+                        (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() - 1),
+                        (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() + 1));
+                
+                kulmaKoordinaatit[3] = new Koordinaatti(
+                        (byte) (kandidaatti.getKoordinaatti().getYKoordinaatti() + 1),
+                        (byte) (kandidaatti.getKoordinaatti().getXKoordinaatti() + 1));
+                
+                int laudanUlkopuolisetNurkat = 0;
+                int omatNurkat = 0;
+                
+                for (int indeksi = 0; indeksi < 4; indeksi++) {
+                    // Jos piste on laudan ulkopuolella :
+                    if (
+                            kulmaKoordinaatit[indeksi].getYKoordinaatti() < 0 ||
+                            kulmaKoordinaatit[indeksi].getYKoordinaatti() > 8 ||
+                            kulmaKoordinaatit[indeksi].getXKoordinaatti() < 0 ||
+                            kulmaKoordinaatit[indeksi].getXKoordinaatti() > 8) {
+                        laudanUlkopuolisetNurkat++;
+                        
+                    // Piste on laudan sis‰puolella :
+                    } else {
+                        Ryhma ryhma = tilanne.getPelilauta().etsiRyhma(kulmaKoordinaatit[indeksi]);
+                        
+                        if (ryhma == null) {
+                            continue;
+                        }
                         if (ryhma.getVari() == tilanne.getPelaaja()) {
-                            samanvarisiaKulmanaapureita++;
+                            omatNurkat++;
                         }
                     }
                 }
                 
-                if (kulmia == 4 && samanvarisiaKulmanaapureita < 3) {
-                    tilanne.setSiirto(kandidaatti);
-                    break;
-                } else if (kulmia > samanvarisiaKulmanaapureita) {
+                /*
+                    Jos jokin nurkka on laudan ulkopuolella, niin laudan ulkopuolisten ja omien
+                    nurkkien summan tulee olla 4, jotta piste on silm‰. Jos kaikki nurkat ovat
+                    laudalla, niin riitt‰‰, ett‰ v‰hint‰‰n kolme on omia.
+                    Jos piste ei ole silm‰, niin lis‰t‰‰n kandidaatti.
+                */
+                if (laudanUlkopuolisetNurkat > 0) {
+                    if (laudanUlkopuolisetNurkat + omatNurkat != 4) {
+                        tilanne.setSiirto(kandidaatti);
+                        System.out.println("Laudan ulkopuoliset + omat != 4");
+                        break;
+                    }
+                } else if (omatNurkat < 3) {
                     tilanne.setSiirto(kandidaatti);
                     break;
                 }
@@ -204,7 +203,6 @@ public class Tekoaly {
                     Jos kandidaattia ei ole lis‰tty, niin se tarkoittaa, ett‰ se t‰ytt‰isi oman
                     silm‰n ja se pit‰‰ poistaa kandidaattien joukosta.
                 */
-                
                 Siirto[] uusiTaulukko = new Siirto[kandidaatit.length];
                 
                 for (int indeksi = 0; indeksi < sattumanvarainenIndeksi; indeksi++) {
@@ -218,6 +216,7 @@ public class Tekoaly {
                 tyhjaIndeksi--;
             }
             
+            System.out.println(tilanne.getSiirto() == null);
             if (tilanne.getSiirto() == null) {
                 tilanne.setSiirto(Siirto.passaus());
             }
