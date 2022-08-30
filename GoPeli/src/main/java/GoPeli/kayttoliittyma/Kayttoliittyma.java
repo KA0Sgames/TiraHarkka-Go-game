@@ -29,6 +29,7 @@ public class Kayttoliittyma extends Application {
     private HashMap<Integer, ImageView> valkoisenKivet;
     private Pelitilanne pelitilanne;
     private Tekoaly tekoaly;
+    private ImageView merkki;
     
     @Override
     public void init() {
@@ -36,6 +37,7 @@ public class Kayttoliittyma extends Application {
         this.valkoisenKivet = new HashMap<>();
         this.pelitilanne = Pelitilanne.uusiPeli();
         this.tekoaly = new Tekoaly();
+        this.merkki = null;
     }
     
     @Override
@@ -98,6 +100,8 @@ public class Kayttoliittyma extends Application {
         lauta.setX(0.0);
         lauta.setY(0.0);
         
+        
+        
         pelialusta.getChildren().add(lauta);
 
         pelialusta.setOnMouseClicked(event -> {
@@ -106,26 +110,50 @@ public class Kayttoliittyma extends Application {
                 paivitaPelialusta(pelialusta, lauta);
                 paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
                 
-                Siirto tekoalynSiirto = this.tekoaly.valitseSiirto(this.pelitilanne);
-                
-                this.pelitilanne.setSiirto(tekoalynSiirto);
-                this.pelitilanne = this.pelitilanne.lisaaSiirto();
-                
-                paivitaPelialusta(pelialusta, lauta);
-                paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
-                
-                if (tekoalynSiirto.equals(Siirto.passaus())) {
-                    viesti.setText("Tekoäly passasi.");
+                if (this.pelitilanne.peliOhi()) {
+                    viesti.setText("Peli ohi!");
+                    Vari voittaja = this.pelitilanne.laskeVoittaja();
+                        
+                    if (voittaja == Vari.MUSTA) {
+                        tulos.setText("Musta voitti!");
+                    } else {
+                        tulos.setText("Valkoinen voitti!");
+                    }
+                    
                 }
+            } else {
+                Siirto tekoalynSiirto = this.tekoaly.valitseSiirto(this.pelitilanne);
+
+                if (tekoalynSiirto.equals(Siirto.passaus())) {
+                    this.pelitilanne.setSiirto(tekoalynSiirto);
+                    this.pelitilanne = this.pelitilanne.lisaaSiirto();
+                    viesti.setText("Tekoäly passasi.");
+                } else if (tekoalynSiirto.equals(Siirto.luovutus())) {
+                    this.pelitilanne.setSiirto(tekoalynSiirto);
+                    this.pelitilanne = this.pelitilanne.lisaaSiirto();
+                } else {
+                    kasitteleKoordinaatit(
+                        tekoalynSiirto.getKoordinaatti().getYKoordinaatti(),
+                        tekoalynSiirto.getKoordinaatti().getXKoordinaatti(),
+                        viesti);
                 
+                    paivitaPelialusta(pelialusta, lauta);
+                    paivitaVangit(mustanVankienMaara, valkoisenVankienMaara);
+                }
+
                 if (this.pelitilanne.peliOhi()) {
                     viesti.setText("Peli ohi!");
                     
-                    if (tekoalynSiirto.equals(Siirto.luovutus())) {
-                        tulos.setText("Musta voitti luovutuksella!");
+                    if (this.pelitilanne.getEdellinenSiirto().equals(Siirto.luovutus())) {
+                        if (this.pelitilanne.getPelaaja() == Vari.MUSTA) {
+                            tulos.setText("Musta voitti luovutuksella!");
+                        } else {
+                            tulos.setText("Valkoinen voitti luovutuksella!");
+                        }
                     } else {
                         Vari voittaja = this.pelitilanne.laskeVoittaja();
-                        
+                    
+                    
                         if (voittaja == Vari.MUSTA) {
                             tulos.setText("Musta voitti!");
                         } else {
@@ -133,7 +161,7 @@ public class Kayttoliittyma extends Application {
                         }
                     }
                 }
-            }            
+            }
         });
         
         passaus.setOnMouseClicked(tapahtuma -> {
@@ -207,21 +235,34 @@ public class Kayttoliittyma extends Application {
         } else {
             viesti.setText(this.pelitilanne.getLaitonSiirto());
         }
+        lisaaViimeisenSiirronMerkki(y, x);
     }
     
     private void paivitaPelialusta(Group pelialusta, ImageView lauta) {
         pelialusta.getChildren().remove(lauta);
             pelialusta.getChildren().removeAll(this.mustanKivet.values());
             pelialusta.getChildren().removeAll(this.valkoisenKivet.values());
+            pelialusta.getChildren().remove(this.merkki);
             
             pelialusta.getChildren().add(lauta);
             pelialusta.getChildren().addAll(this.mustanKivet.values());
             pelialusta.getChildren().addAll(this.valkoisenKivet.values());
+            pelialusta.getChildren().add(this.merkki);
     }
     
     private void paivitaVangit(Label mustanVankienMaara, Label valkoisenVankienMaara) {
         mustanVankienMaara.setText("" + this.pelitilanne.getKaapatutValkoiset());
         valkoisenVankienMaara.setText("" + this.pelitilanne.getKaapatutMustat());
+    }
+    
+    private void lisaaViimeisenSiirronMerkki(int y, int x) {
+        Image siirronMerkki = new Image("D:\\KA0S\\Koulu\\TiraHarkkatyo\\TiraHarkka-Go-game\\GoPeli\\src\\main\\kuvat\\LastMoveMarker.png");
+        ImageView merkki = new ImageView(siirronMerkki);
+        
+        merkki.setY(y * 50 + 25);
+        merkki.setX(x * 50 + 25);
+        
+        this.merkki = merkki;
     }
     
     public static void main(String[] args) {
