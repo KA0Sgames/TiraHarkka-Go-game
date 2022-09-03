@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class Tekoaly {
-    private Random random;
+    private final Random random;
     private double viimeisenSiirronVoittotodennakoisyys;
     
     public Tekoaly() {
@@ -18,6 +18,10 @@ public class Tekoaly {
     
     public Tekoaly(Random random) {
         this.random = random;
+    }
+    
+    public Random getRandom() {
+        return this.random;
     }
     
     public Siirto valitseSiirto(Pelitilanne tilanne){
