@@ -13,8 +13,9 @@
 - 29.8. Yritin korjata bugia tekoälystä. Noin 3 tuntia.
 - 30.8. Korjasin tekoälyn bugit (loputon looppi pelin simuloinnissa, sekä joidenkin listojen väärästä käsittelystä johtuvat null pointterit. Muokkasin käyttöliittymän toimimaan korjatun tekoälyn kanssa ja lisäsin viimeisen siirron merkin. Yhteensä 3,5 tuntia.
 - 3.9. Kirjoitin testejä Tekoaly-luokalle. Noin 3 tuntia.
+- 5.9. Muokkasin Koordinaatti-luokan Javadoc kommentit lopulliseen muotoon ja kirjoitin Pelilauta- ja Pelitilanne-luokkien Javadoc kommentit. Yhteensä 2 tuntia.
 
-###### Käytetty aika tällä viikolla yhteensä n. 25 tuntia.
+###### Käytetty aika tällä viikolla yhteensä n. 27 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -25,6 +26,7 @@
 - 28.8. Kirjoitettu tekoälylle simuloiSattumanvarainenPeli-metodi. Jos korjattavaa ei ilmene, niin tekoälyn pitäisi olla valmis.
 - 30.8. Tekoäly korjattu toimimaan niin, että se tuottaa tuloksia (tulosten eli siirtojen järkevyys vielä hakusessa tehokkuudesta johtuen).
 - 3.9. Testejä kirjoitettu Tekoaly-luokalle.
+- 5.9. Koordinaatti-, Pelilauta- ja Pelitilanne-luokkien Javadoc kommentit kirjoitettu.
 
 ### Mitä opin tällä viikolla?
 
@@ -49,3 +51,4 @@
 - 28.8. Etsi bugi tekoälystä, yksi null pointer exceptionin aiheuttava löydetty, mutta nyt käyttöliittymä jää jumiin, lisäämättä siirtoja.
 - 30.8. Demotilaisuus johon osallistun on huomenna, joten joudun esittelemään työn tällaisenaan. Se jollain mittarilla toimii, mutta tehokkuutta pitäisi parantaa. Tehokkuutta saattaisi hieman parantaa Zobrist hashingin käyttö ko-tilanteiden tarkistuksessa sen sijaan, että käydään koko vanha pelipuu läpi.
 - 3.9. Kirjoitan dokumentaation.
+- 5.9. Loppujen luokkien Javadoc kommenttien kirjoitus, sekä muiden dokumentointien kirjoitus.

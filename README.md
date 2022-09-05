@@ -31,3 +31,5 @@ Puutteet ja bugit:
 
 - Ohjelman tekoälyssä bugi, kun tekoälyn pitäisi passata niin tulee NullPointerException.
 - Ohjelman käyttöliittymässä bugi. Testasin pelata peliä ja valkoisen vangit lisääntyivät, vaikka valkea ei kaapannut kiviä.
+
+Huom. Ohjelman dokumentaation kirjoittaminen vielä kesken.
