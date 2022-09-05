@@ -29,16 +29,16 @@ public class Koordinaatti {
     }
     
     /**
-     * Metodi palauttaa koordinaatin leveyssuuntaisen arvon
-     * @return koordinaatin x arvo.
+     * Metodi palauttaa koordinaatin leveyssuuntaisen arvon vasemmalta l‰htien.
+     * @return x - koordinaatin leveyssuuntainen arvo. Arvov‰li 0-8.
      */
     public byte getXKoordinaatti() {
         return this.x;
     }
     
     /**
-     * Metodi palauttaa koordinaatin korkeussuuntaisen arvon ylh‰‰lt‰ l‰htien
-     * @return y arvo.
+     * Metodi palauttaa koordinaatin korkeussuuntaisen arvon ylh‰‰lt‰ l‰htien.
+     * @return y - koordinaatin korkeussuuntainen arvo. Arvov‰li 0-8.
      */
     public byte getYKoordinaatti() {
         return this.y;
@@ -46,7 +46,7 @@ public class Koordinaatti {
     
     /**
      * Metodi joka palauttaa koordinaatin pysty- ja vaakasuuntaan vieress‰ olevat koordinaatit, jos ne ovat laudan sis‰ll‰.
-     * @return HashSet jossa vaaka-ja pystysuuntaan viereiset koordinaatit.
+     * @return HashSet - vaaka- ja pystysuuntaan viereiset koordinaatit, jotka ovat laudan sis‰puolella.
      */
     public HashSet<Koordinaatti> getNaapurit() {
         HashSet<Koordinaatti> naapurit = new HashSet<>();
@@ -78,6 +78,14 @@ public class Koordinaatti {
         return hash;
     }
 
+    /**
+     * Equals jolla verrataan kahta oliota, ovatko ne samat.
+     * Palauttaa true, jos oliota verrataan siihen itseens‰.
+     * Palauttaa false, jos oliota verrataan null arvoon tai eli luokasta konstruoituun olioon.
+     * Muuten palauttaa true, jos verrattavien Koordinaatti-olioiden y, sek‰ x arvot ovat samat.
+     * @param obj parametrina annetaan olio, johon verrataan haluttua Koordinaatti-oliota.
+     * @return true/false - jos verrattavat oliot ovat samat, tai niill‰ on samat y ja x arvot, niin true, muuten false.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
