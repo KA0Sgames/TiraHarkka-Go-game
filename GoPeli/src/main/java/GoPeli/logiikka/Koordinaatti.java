@@ -79,7 +79,7 @@ public class Koordinaatti {
     }
 
     /**
-     * Equals jolla verrataan kahta oliota, ovatko ne samat.
+     * Equals jolla verrataan vastaavatko kaksi oliota toisiaan.
      * Palauttaa true, jos oliota verrataan siihen itseensä.
      * Palauttaa false, jos oliota verrataan null arvoon tai eli luokasta konstruoituun olioon.
      * Muuten palauttaa true, jos verrattavien Koordinaatti-olioiden y, sekä x arvot ovat samat.
