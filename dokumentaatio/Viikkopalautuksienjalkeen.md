@@ -10,8 +10,9 @@
 - 3.9. Kirjoitin testejä Tekoaly-luokalle. Noin 3 tuntia.
 - 5.9. Muokkasin Koordinaatti-luokan Javadoc kommentit lopulliseen muotoon ja kirjoitin Pelilauta- ja Pelitilanne-luokkien Javadoc kommentit. Yhteensä 2 tuntia.
 - 6.9. Kirjoitin Javadoc kommentit Ryhma-, Siirto-, Vari ja MCPHSolmu-luokille. Lisäksi erotin viikkoraportin 6 ja sen jälkeisen työn omiksi dokumenteikseen. Yhteensä 4 tuntia.
+- 7.9. Kirjoitin Javadoc kommentit Tekoaly-, Kayttoliittyma- ja Main-luokille. Tunti.
 
-###### Käyttämäni aika yhteensä 21 tuntia.
+###### Käyttämäni aika yhteensä 22 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -19,6 +20,8 @@
 - 30.8. Tekoäly korjattu toimimaan niin, että se tuottaa tuloksia (tulosten eli siirtojen järkevyys vielä hakusessa tehokkuudesta johtuen).
 - 3.9. Testejä kirjoitettu Tekoaly-luokalle.
 - 5.9. Koordinaatti-, Pelilauta- ja Pelitilanne-luokkien Javadoc kommentit kirjoitettu.
+- 6.9. Ryhma-, Siirto-, Vari ja MCPHSolmu-luokkien Javadoc kommentit kirjoitettu.
+- 7.9. Javadoc kommentit kirjoitettu loppuun koko ohjelmalle.
 
 ### Mitä olen oppinut?
 
@@ -36,3 +39,4 @@
 - 3.9. Kirjoitan dokumentaation.
 - 5.9. Loppujen luokkien Javadoc kommenttien kirjoitus, sekä muiden dokumentointien kirjoitus.
 - 6.9. Tekoaly-luokan Javadoc kommenttien kirjoitus, sekä varsinaisten dokumenttien kirjoittaminen.
+- 7.9. Varsinaisten dokumenttien kirjoitus. (Käyttöohje, toteutusdokumentti, sekä testausdokumentti.) Lisäksi pitää selvittää saanko toimivan jar:in generoitua kun käyttöliittymän kuvat käyttävät absoluuttisia tiedostopolkuja.
