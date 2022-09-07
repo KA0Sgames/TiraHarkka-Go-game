@@ -8,22 +8,57 @@ import GoPeli.logiikka.Vari;
 import java.util.HashSet;
 import java.util.Random;
 
+/**
+ * Monte Carlo Puuhakuun perustuvan teko‰lyn m‰‰ritt‰v‰ luokka.
+ */
 public class Tekoaly {
     private final Random random;
     private double viimeisenSiirronVoittotodennakoisyys;
     
+    /**
+     * Konstruktori Tekoaly-olion luontiin ilman parametreja.
+     * Ohjelman teko‰lyn p‰‰konstruktori.
+     */
     public Tekoaly() {
         this.random = new Random();
     }
     
+    /**
+     * Konstruktori jolla luodaan Tekoaly-olio annetun satunnaislukugeneraattorin kanssa.
+     * P‰‰k‰yttˆtarkoitus ohjelman testaamisessa, kun testien pit‰‰ tuottaa sama tulos joka suorituskerralla.
+     * @param random Javan Random-luokan satunnaisgeneraattori, jonka voi luoda seedill‰, jotta generaattori tuottaa aina saman tuloksen samassa tilanteessa.
+     */
     public Tekoaly(Random random) {
         this.random = random;
     }
     
+    /**
+     * Metodi jolla saa viitteen teko‰lyn satunnaisgeneraattoriin.
+     * P‰‰k‰yttˆ testeiss‰, kun tarkistetaan, ett‰ satunnaisgeneraattori on asetettu oikein.
+     * @return Random - palauttaa teko‰lyn k‰ytt‰m‰n satunnaisgeneraattori-olion.
+     */
     public Random getRandom() {
         return this.random;
     }
     
+    /**
+     * Metodi jolla teko‰ly muodostaa parametrina annettavaan pelitilanteeseen sopivan siirron.
+     * 
+     * Huom. metodia ei ole viel‰ t‰ysin testattu ja se ei toimi t‰ysin oikein.
+     * Tilanteessa jossa lauta on l‰hes t‰ysi (l‰hell‰ lopputilannetta) ja palautettavan siirron tulisi olla passaus (mahdollisesti jo edelt‰v‰ss‰ tilanteessa jossa on vain yksi
+     * laillinen paikka pelattavana, joka ei t‰yt‰ omaa silm‰‰) metodi tuottaa NullPointerExceptionin rivill‰ 60. T‰t‰ en ole kerennyt tutkimaan ja korjaamaan, enk‰ kurssin
+     * aikarajoissa ehdik‰‰n en‰‰ korjaamaan.
+     * 
+     * Lis‰ksi t‰m‰nhetkinen toteutus on liian hidas, jotta pelien simulointeja teht‰isiin tarpeeksi j‰rkevi‰ tuloksia varten. K‰yt‰nnˆss‰ kun metodin s‰‰t‰‰ k‰ytt‰m‰‰n 30 sekuntia
+     * Monte Carlo hakupuun generointiin, se toimii l‰hestulkoon naiivin botin tasoisesti.
+     * 
+     * Yrit‰n j‰rjest‰‰ itselleni aikaa tehd‰ parannetun version ohjelmasta kurssin j‰lkeen harrasteprojektina ja korjata yll‰ mainitun bugin uudessa versiossa, sek‰ tehostaa
+     * k‰ytett‰vi‰ toteutuksia. Eritoten jos saan Pelitilanne-luokan tarkastamaan ko-s‰‰nnˆn Zobrist hajautusta k‰ytt‰en, sen sijaan ett‰ se tarkistaa kaikki aikaisemmat
+     * pelitilanteet linkitetyn rakenteen l‰pik‰yden ja verraten tarkistettavaa lautatilannetta aikaisempiin lautatilanteisiin.
+     * 
+     * @param tilanne parametrina annettava pelitilanne Pelitilanne-oliona, johon halutaan teko‰lyn valitsevan sen mielest‰ parhaan siirron.
+     * @return Siirto - palauttaa valitsemansa siirron Siirto-oliona, joka sis‰lt‰‰ joko pelattavan koordinaatin Koordinaatti-oliona, tai sen passaus- tai luovutusarvo on true.
+     */
     public Siirto valitseSiirto(Pelitilanne tilanne){
         MCPHSolmu juuri = new MCPHSolmu(tilanne, null, tilanne.getEdellinenSiirto(), this.random);
         
@@ -41,7 +76,6 @@ public class Tekoaly {
                 solmu = solmu.lisaaSattumanvarainenLapsiPuuhun();
             }
             
-            // TODO simuloiSattumanvarainenPeli
             Vari voittaja = simuloiSattumanvarainenPeli(solmu.getPelitilanne());
             
             while (solmu != null) {

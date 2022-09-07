@@ -24,6 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Ohjelman käyttöliittymästä vastaava luokka, joka käynnistetään ohjelman käynnistyessä pääohjelman toimesta.
+ */
 public class Kayttoliittyma extends Application {
     private HashMap<Integer, ImageView> mustanKivet;
     private HashMap<Integer, ImageView> valkoisenKivet;
@@ -31,6 +34,9 @@ public class Kayttoliittyma extends Application {
     private Tekoaly tekoaly;
     private ImageView merkki;
     
+    /**
+     * init-metodi joka alustaa käyttöliittymän käyttämät tietorakenteet.
+     */
     @Override
     public void init() {
         this.mustanKivet = new HashMap<>();
@@ -40,6 +46,10 @@ public class Kayttoliittyma extends Application {
         this.merkki = null;
     }
     
+    /**
+     * Varsinainen käyttöliittymän toteutus.
+     * @param ikkuna Stage-olio, joka toimii JavaFX korkeimman tason säiliönä johon visuaaliset elementit sisällytetään.
+     */
     @Override
     public void start(Stage ikkuna) {
         
@@ -265,6 +275,10 @@ public class Kayttoliittyma extends Application {
         this.merkki = merkki;
     }
     
+    /**
+     * Käyttöliittymän käynnistävä käyttöliittymän main-metodi.
+     * @param args 
+     */
     public static void main(String[] args) {
         launch(Kayttoliittyma.class);
     }
