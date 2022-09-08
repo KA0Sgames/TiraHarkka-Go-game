@@ -4,6 +4,7 @@
 ### Dokumentaatio:
 
 - [Määrittelydokumentti](dokumentaatio/Maarittelydokumentti.md)
+- [Testikattavuusraportti](dokumentaatio/Testikattavuusraportti.md)
 
 Viikkoraportit:
 

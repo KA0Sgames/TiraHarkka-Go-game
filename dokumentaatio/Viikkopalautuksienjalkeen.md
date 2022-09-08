@@ -11,8 +11,9 @@
 - 5.9. Muokkasin Koordinaatti-luokan Javadoc kommentit lopulliseen muotoon ja kirjoitin Pelilauta- ja Pelitilanne-luokkien Javadoc kommentit. Yhteensä 2 tuntia.
 - 6.9. Kirjoitin Javadoc kommentit Ryhma-, Siirto-, Vari ja MCPHSolmu-luokille. Lisäksi erotin viikkoraportin 6 ja sen jälkeisen työn omiksi dokumenteikseen. Yhteensä 4 tuntia.
 - 7.9. Kirjoitin Javadoc kommentit Tekoaly-, Kayttoliittyma- ja Main-luokille. Tunti.
+- 8.9. Kirjoitin testikattavuusraportin. Noin 2 tuntia.
 
-###### Käyttämäni aika yhteensä 22 tuntia.
+###### Käyttämäni aika yhteensä 24 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -40,3 +41,4 @@
 - 5.9. Loppujen luokkien Javadoc kommenttien kirjoitus, sekä muiden dokumentointien kirjoitus.
 - 6.9. Tekoaly-luokan Javadoc kommenttien kirjoitus, sekä varsinaisten dokumenttien kirjoittaminen.
 - 7.9. Varsinaisten dokumenttien kirjoitus. (Käyttöohje, toteutusdokumentti, sekä testausdokumentti.) Lisäksi pitää selvittää saanko toimivan jar:in generoitua kun käyttöliittymän kuvat käyttävät absoluuttisia tiedostopolkuja.
+- 8.9. Käyttöohje, toteutusdokumentti ja selvittely saako toimivan jar:in tehtyä.
