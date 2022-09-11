@@ -4,6 +4,7 @@
 ### Dokumentaatio:
 
 - [Määrittelydokumentti](dokumentaatio/Maarittelydokumentti.md)
+- [Käyttöohje](dokumentaatio/Kayttoohje.md)
 - [Testikattavuusraportti](dokumentaatio/Testikattavuusraportti.md)
 
 Viikkoraportit:
@@ -16,18 +17,21 @@ Viikkoraportit:
 - [Viikko 6](dokumentaatio/Viikkoraportti6.md)
 - [Viikkopalautusten jälkeinen työ](dokumentaatio/Viikkopalautuksienjalkeen.md)
 
-JavaDoc:
+### JavaDoc:
 
 - Javadoc voidaan generoida komennolla `gradle javadoc`
 - Javadoc:ia voidaan tarkastella tiedostosta /GoPeli/build/docs/javadoc/index.html
 
-Testit:
+### Testit:
 
 - Testit voi ajaa komennolla `gradle test`
 - Testien tuloksia voi tarkastella tiedostosta /GoPeli/build/reports/tests/test/index.html
 
 - Testit ajamalla generoituu testikattavuusraportti, jota voi tutkia tiedostosta /GoPeli/build/reports/jacoco/test/html/index.html
 
+### Ohjelmalla pelaaminen:
+
+- Käyttöohjeessa on ohjeet miten ohjelmaa pääsee käyttämään, tällä hetkellä valitettavasti toimivaa Jar-tiedostoa ei ole.
 
 Puutteet ja bugit:
 
