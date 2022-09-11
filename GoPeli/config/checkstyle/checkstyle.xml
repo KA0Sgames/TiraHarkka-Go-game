@@ -5,10 +5,6 @@
     <!-- asetetaan kieliasetukset englanniksi. -->
     <property name="localeCountry" value="EN"/>
     <property name="localeLanguage" value="en"/>
-
-    <module name="SuppressionFilter">
-        <property name="file" value="skipped_files.xml" />
-    </module>
     
     <module name='TreeWalker'>
 
