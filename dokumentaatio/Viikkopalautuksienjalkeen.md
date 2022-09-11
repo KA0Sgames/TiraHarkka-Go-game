@@ -12,8 +12,9 @@
 - 6.9. Kirjoitin Javadoc kommentit Ryhma-, Siirto-, Vari ja MCPHSolmu-luokille. Lisäksi erotin viikkoraportin 6 ja sen jälkeisen työn omiksi dokumenteikseen. Yhteensä 4 tuntia.
 - 7.9. Kirjoitin Javadoc kommentit Tekoaly-, Kayttoliittyma- ja Main-luokille. Tunti.
 - 8.9. Kirjoitin testikattavuusraportin. Noin 2 tuntia.
+- 11.9. Yritin saada tehtyä toimivan Jar tiedoston onnistumatta. Kirjoitin käyttöohjeen. Yhteensä noin 4 tuntia.
 
-###### Käyttämäni aika yhteensä 24 tuntia.
+###### Käyttämäni aika yhteensä 28 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -32,6 +33,7 @@
 - 29.8. En jostain syystä löydä, miksi pelin simulointi jää looppiin. Jostain syystä se jossain vaiheessa simulaatiota passaa, mutta ei kahdesti peräkkäin ja vaikka tekoäly on passannut edellisellä siirrollaan, se ei passaa uusiksi seuraavalla.
 - 30.8. En osaa sanoa mistä loputon looppi johtui, joten jouduin toteuttamaan naiivin tekoälyn pelin simuloinnissa hieman tehottomalla tavalla ja täten Monte Carlo algoritmi valitsee lähes sattumanvaraisia siirtoja kun simuloituja pelejä ei tule tarpeeksi.
 - 3.9. Tekoaly-luokassa bugi, kun tekoälyn pitäisi passata, tulee NullPointerException.
+- 11.9. Miten saisin Jar-tiedoston generoitua niin, että se käyttää tarvittavia kuvatiedostoja ja miten saisin nämä paketoitua toimivaksi pakkaukseksi, joka ei ole riippuvainen absoluuttisista tiedostopoluista.
 
 ### Mitä teen seuraavaksi?
 
