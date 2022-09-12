@@ -150,13 +150,13 @@ Tässä voi käyttää apuna edellisiä laajennuksia.
 
 ## Lähteet
 
-- https://www.cs.helsinki.fi/u/ahslaaks/kkkk.pdf
+- https://www.cs.helsinki.fi/u/ahslaaks/kkkk.pdf  
 Käytin aivan projektin alkuvaiheessa määrittelydokumenttia tehdessä, kun pohdin
 aikavaativuuksia.
 
-- https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.699.1458&rep=rep1&type=pdf
+- https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.699.1458&rep=rep1&type=pdf  
 Käytin projektin alussa hahmottamaan itselleni
 kuinka Monte Carlo Puuhaku-algoritmi pääpiirteissään toimii.
 
-- Pumperla, M., Ferguson, K., 2019, Deep Learning and the Game of Go, Manning Publications
+- Pumperla, M., Ferguson, K., 2019, Deep Learning and the Game of Go, Manning Publications  
 Deep Learning and the Game of Go on ollut päälähteeni koko projektin ajan aivan alkua lukuunottamatta.
