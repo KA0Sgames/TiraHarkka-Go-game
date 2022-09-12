@@ -4,7 +4,7 @@
 ### Dokumentaatio:
 
 - [Määrittelydokumentti](dokumentaatio/Maarittelydokumentti.md)
-- [Toteutusdokumentti](Toteutusdokumentti.md)
+- [Toteutusdokumentti](dokumentaatio/Toteutusdokumentti.md)
 - [Käyttöohje](dokumentaatio/Kayttoohje.md)
 - [Testikattavuusraportti](dokumentaatio/Testikattavuusraportti.md)
 
