@@ -13,8 +13,9 @@
 - 7.9. Kirjoitin Javadoc kommentit Tekoaly-, Kayttoliittyma- ja Main-luokille. Tunti.
 - 8.9. Kirjoitin testikattavuusraportin. Noin 2 tuntia.
 - 11.9. Yritin saada tehtyä toimivan Jar tiedoston onnistumatta. Kirjoitin käyttöohjeen. Yhteensä noin 4 tuntia.
+- 11.9. Kirjoitin toteutusdokumentin. Noin 3 tuntia.
 
-###### Käyttämäni aika yhteensä 28 tuntia.
+###### Käyttämäni aika yhteensä 31 tuntia.
 
 ### Miten ohjelma on edistynyt?
 
@@ -44,3 +45,4 @@
 - 6.9. Tekoaly-luokan Javadoc kommenttien kirjoitus, sekä varsinaisten dokumenttien kirjoittaminen.
 - 7.9. Varsinaisten dokumenttien kirjoitus. (Käyttöohje, toteutusdokumentti, sekä testausdokumentti.) Lisäksi pitää selvittää saanko toimivan jar:in generoitua kun käyttöliittymän kuvat käyttävät absoluuttisia tiedostopolkuja.
 - 8.9. Käyttöohje, toteutusdokumentti ja selvittely saako toimivan jar:in tehtyä.
+- 11.9. Jatkan harrasteprojektina kun aika riittää.

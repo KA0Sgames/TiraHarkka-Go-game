@@ -4,6 +4,7 @@
 ### Dokumentaatio:
 
 - [Määrittelydokumentti](dokumentaatio/Maarittelydokumentti.md)
+- [Toteutusdokumentti](Toteutusdokumentti.md)
 - [Käyttöohje](dokumentaatio/Kayttoohje.md)
 - [Testikattavuusraportti](dokumentaatio/Testikattavuusraportti.md)
 
@@ -33,9 +34,8 @@ Viikkoraportit:
 
 - Käyttöohjeessa on ohjeet miten ohjelmaa pääsee käyttämään, tällä hetkellä valitettavasti toimivaa Jar-tiedostoa ei ole.
 
-Puutteet ja bugit:
+### Puutteet ja bugit:
 
 - Ohjelman tekoälyssä bugi, kun tekoälyn pitäisi passata niin tulee NullPointerException.
 - Ohjelman käyttöliittymässä bugi. Testasin pelata peliä ja valkoisen vangit lisääntyivät, vaikka valkea ei kaapannut kiviä.
-
-Huom. Ohjelman dokumentaation kirjoittaminen vielä kesken.
+- Ohjelman toteutus on vielä liian hidas, jotta tekoäly saisi tehdyksi tarpeeksi simulaatioita, tarkemmin toteutusdokumentissa.

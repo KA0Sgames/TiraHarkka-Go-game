@@ -125,3 +125,38 @@ Empiirisissä kokeissa havaitsin, että jos pyrkii tulokseen, jossa päädytää
 käyttöliittymän valkean kaappaamien kivien määrä saattaa kasvaa vaikka valkea ei kiviä kaappaisi. Tämä saattaa johtua siitä, että
 simulaatio käyttää pelitilannetta ja päivittää siihen kaapattujen kivien määrää simulaatioiden aikana tapahtuneista kaappauksista. Tämä
 todennäköisesti ratkeaa sillä, että tekoäly tekee syväkopion pelitilanteesta ennen kuin alkaa käyttämään sitä pelien simulointiin.
+
+## Laajennuksia
+
+#### Pelilaudan koon valinta
+
+Pelilaudan koon valinnan lisääminen ja toteutuksen muokkaaminen niin, että voi pelata erikokoisilla laudoilla, ainakin 13x13 ja 19x19
+tämän 9x9 toteutuksen lisäksi.
+
+#### Värien valinta
+
+Mahdollisuus valita molemmille väreille joko ihmis- tai tekoälypelaaja, mikä mahdollistaisi kahden ihmispelaajan väliset pelit, ihmisen
+pelaamisen valkoisilla mustaa tekoälyä vastaan tai self-play toiminnallisuus tekoälylle, eli kahden tekoälyn pelaaminen vastakkain.
+
+#### Nettiliitäntämahdollisuus
+
+GTP (Go Text Protocol) lisääminen toiminnallisuuteen, jotta ohjelman tekoälyn voi yhdistää yleisiin Go servereihin, kuten KGS tai OGS.
+Tätä protokollaa voi käyttää myös siihen, että oma tekoäly pelaa muita tekoälyjä kuten GNU Go tai Pachi vastaan. Tätä voi käyttää
+mahdollisesti hyödyksi jos käyttää tekoälyjen välisiä pelejä harjoittamaan koneoppimista hyödyntävää tekoälyä.
+
+#### Koneoppimista hyödyntävän tekoälyn lisääminen
+
+Tässä voi käyttää apuna edellisiä laajennuksia.
+
+## Lähteet
+
+- https://www.cs.helsinki.fi/u/ahslaaks/kkkk.pdf
+Käytin aivan projektin alkuvaiheessa määrittelydokumenttia tehdessä, kun pohdin
+aikavaativuuksia.
+
+- https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.699.1458&rep=rep1&type=pdf
+Käytin projektin alussa hahmottamaan itselleni
+kuinka Monte Carlo Puuhaku-algoritmi pääpiirteissään toimii.
+
+- Pumperla, M., Ferguson, K., 2019, Deep Learning and the Game of Go, Manning Publications
+Deep Learning and the Game of Go on ollut päälähteeni koko projektin ajan aivan alkua lukuunottamatta.
